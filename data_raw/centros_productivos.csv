@@ -1,0 +1,73 @@
+id_centro,nombre,tipo,subtipo,fase,produccion_ton_anio,cabezas_ganado,n_aves,comuna,utm_este,utm_norte,fuente
+PIS-01,Piscicultura simulada 01,piscicultura,Trucha arcoíris,Alevinaje y smolt,115,,,Villarrica,223031,5641877,simulado
+PIS-02,Piscicultura simulada 02,piscicultura,Salmón coho,Ovas y alevines,144,,,Villarrica,213653,5663395,simulado
+PIS-03,Piscicultura simulada 03,piscicultura,Trucha arcoíris,Alevinaje y smolt,58,,,Curarrehue,288099,5679188,simulado
+PIS-04,Piscicultura simulada 04,piscicultura,Salmón coho,Ovas y alevines,298,,,Curarrehue,291146,5674268,simulado
+PIS-05,Piscicultura simulada 05,piscicultura,Salmón del Atlántico,Alevinaje y smolt,53,,,Pucón,273349,5655302,simulado
+PIS-06,Piscicultura simulada 06,piscicultura,Trucha arcoíris,Ovas y alevines,104,,,Pucón,260276,5630325,simulado
+PIS-07,Piscicultura simulada 07,piscicultura,Salmón del Atlántico,Alevinaje y smolt,76,,,Villarrica,216527,5659117,simulado
+PIS-08,Piscicultura simulada 08,piscicultura,Salmón del Atlántico,Reproductores,165,,,Curarrehue,274019,5627194,simulado
+PIS-09,Piscicultura simulada 09,piscicultura,Trucha arcoíris,Reproductores,216,,,Curarrehue,285679,5632482,simulado
+PIS-10,Piscicultura simulada 10,piscicultura,Salmón del Atlántico,Alevinaje y smolt,51,,,Pucón,263049,5633762,simulado
+PIS-11,Piscicultura simulada 11,piscicultura,Salmón coho,Alevinaje y smolt,138,,,Pucón,279181,5665136,simulado
+PIS-12,Piscicultura simulada 12,piscicultura,Salmón del Atlántico,Ovas y alevines,62,,,Pucón,265796,5658170,simulado
+GAN-01,Predio ganadero simulado 01,ganaderia,Bovino de carne,,,42,,Villarrica,223659,5638923,simulado
+GAN-02,Predio ganadero simulado 02,ganaderia,Bovino de leche,,,615,,Pucón,274262,5654390,simulado
+GAN-03,Predio ganadero simulado 03,ganaderia,Bovino de carne,,,38,,Curarrehue,293072,5647354,simulado
+GAN-04,Predio ganadero simulado 04,ganaderia,Bovino de leche,,,64,,Villarrica,231807,5641849,simulado
+GAN-05,Predio ganadero simulado 05,ganaderia,Bovino de carne,,,115,,Curarrehue,286743,5673611,simulado
+GAN-06,Predio ganadero simulado 06,ganaderia,Bovino de leche,,,132,,Villarrica,210138,5664111,simulado
+GAN-07,Predio ganadero simulado 07,ganaderia,Bovino de carne,,,114,,Villarrica,240947,5633185,simulado
+GAN-08,Predio ganadero simulado 08,ganaderia,Ovino,,,19,,Pucón,255832,5641049,simulado
+GAN-09,Predio ganadero simulado 09,ganaderia,Bovino de carne,,,78,,Pucón,269059,5659495,simulado
+GAN-10,Predio ganadero simulado 10,ganaderia,Bovino de carne,,,44,,Pucón,240116,5646037,simulado
+GAN-11,Predio ganadero simulado 11,ganaderia,Bovino de carne,,,64,,Pucón,246646,5643554,simulado
+GAN-12,Predio ganadero simulado 12,ganaderia,Ovino,,,166,,Pucón,257642,5641947,simulado
+GAN-13,Predio ganadero simulado 13,ganaderia,Bovino de carne,,,156,,Pucón,253294,5640558,simulado
+GAN-14,Predio ganadero simulado 14,ganaderia,Bovino de carne,,,27,,Curarrehue,290722,5656031,simulado
+GAN-15,Predio ganadero simulado 15,ganaderia,Bovino de carne,,,382,,Pucón,249051,5644517,simulado
+GAN-16,Predio ganadero simulado 16,ganaderia,Bovino de leche,,,15,,Curarrehue,278642,5638838,simulado
+GAN-17,Predio ganadero simulado 17,ganaderia,Bovino de carne,,,160,,Pucón,273736,5661608,simulado
+GAN-18,Predio ganadero simulado 18,ganaderia,Ovino,,,79,,Curarrehue,285629,5661293,simulado
+GAN-19,Predio ganadero simulado 19,ganaderia,Bovino de carne,,,58,,Pucón,259250,5633729,simulado
+GAN-20,Predio ganadero simulado 20,ganaderia,Bovino de carne,,,49,,Villarrica,214484,5652863,simulado
+GAN-21,Predio ganadero simulado 21,ganaderia,Bovino de carne,,,38,,Villarrica,234245,5637133,simulado
+GAN-22,Predio ganadero simulado 22,ganaderia,Bovino de leche,,,228,,Pucón,266778,5663537,simulado
+GAN-23,Predio ganadero simulado 23,ganaderia,Bovino de carne,,,23,,Villarrica,219448,5642400,simulado
+GAN-24,Predio ganadero simulado 24,ganaderia,Bovino de carne,,,19,,Curarrehue,279249,5631220,simulado
+GAN-25,Predio ganadero simulado 25,ganaderia,Bovino de carne,,,56,,Villarrica,241374,5663765,simulado
+GAN-26,Predio ganadero simulado 26,ganaderia,Bovino de carne,,,108,,Curarrehue,272257,5650393,simulado
+GAN-27,Predio ganadero simulado 27,ganaderia,Bovino de leche,,,32,,Pucón,245085,5639241,simulado
+GAN-28,Predio ganadero simulado 28,ganaderia,Bovino de leche,,,92,,Curarrehue,274284,5636794,simulado
+GAN-29,Predio ganadero simulado 29,ganaderia,Ovino,,,35,,Villarrica,231452,5655511,simulado
+GAN-30,Predio ganadero simulado 30,ganaderia,Ovino,,,75,,Pucón,249580,5650069,simulado
+GAN-31,Predio ganadero simulado 31,ganaderia,Bovino de carne,,,81,,Curarrehue,290891,5644834,simulado
+GAN-32,Predio ganadero simulado 32,ganaderia,Bovino de leche,,,92,,Curarrehue,290160,5653700,simulado
+GAN-33,Predio ganadero simulado 33,ganaderia,Bovino de leche,,,325,,Pucón,270972,5641846,simulado
+GAN-34,Predio ganadero simulado 34,ganaderia,Bovino de carne,,,27,,Villarrica,219258,5666129,simulado
+GAN-35,Predio ganadero simulado 35,ganaderia,Bovino de leche,,,44,,Villarrica,212948,5656091,simulado
+GAN-36,Predio ganadero simulado 36,ganaderia,Ovino,,,50,,Pucón,261573,5627443,simulado
+GAN-37,Predio ganadero simulado 37,ganaderia,Bovino de leche,,,14,,Pucón,254162,5640288,simulado
+GAN-38,Predio ganadero simulado 38,ganaderia,Bovino de carne,,,64,,Pucón,265428,5655973,simulado
+GAN-39,Predio ganadero simulado 39,ganaderia,Bovino de carne,,,43,,Curarrehue,289147,5669276,simulado
+GAN-40,Predio ganadero simulado 40,ganaderia,Bovino de carne,,,41,,Pucón,247798,5649578,simulado
+GAN-41,Predio ganadero simulado 41,ganaderia,Bovino de carne,,,37,,Pucón,254943,5645360,simulado
+GAN-42,Predio ganadero simulado 42,ganaderia,Bovino de carne,,,116,,Curarrehue,281179,5638809,simulado
+GAN-43,Predio ganadero simulado 43,ganaderia,Ovino,,,116,,Pucón,247284,5659814,simulado
+GAN-44,Predio ganadero simulado 44,ganaderia,Bovino de carne,,,169,,Curarrehue,274957,5641641,simulado
+GAN-45,Predio ganadero simulado 45,ganaderia,Bovino de leche,,,59,,Curarrehue,286599,5618694,simulado
+AVI-01,Granja avícola simulada 01,avicola,Broiler,,,,816,Villarrica,219134,5644927,simulado
+AVI-02,Granja avícola simulada 02,avicola,Broiler,,,,1249,Pucón,261532,5662399,simulado
+AVI-03,Granja avícola simulada 03,avicola,Postura,,,,2909,Pucón,251653,5643653,simulado
+AVI-04,Granja avícola simulada 04,avicola,Postura,,,,2377,Pucón,246216,5648659,simulado
+AVI-05,Granja avícola simulada 05,avicola,Broiler,,,,5497,Pucón,245835,5645056,simulado
+AVI-06,Granja avícola simulada 06,avicola,Broiler,,,,3121,Villarrica,221982,5649962,simulado
+AVI-07,Granja avícola simulada 07,avicola,Broiler,,,,45413,Curarrehue,276929,5643553,simulado
+AVI-08,Granja avícola simulada 08,avicola,Postura,,,,2496,Pucón,251243,5654063,simulado
+AVI-09,Granja avícola simulada 09,avicola,Postura,,,,1930,Villarrica,219990,5643490,simulado
+AVI-10,Granja avícola simulada 10,avicola,Postura,,,,927,Curarrehue,281666,5637959,simulado
+AVI-11,Granja avícola simulada 11,avicola,Broiler,,,,5003,Villarrica,219405,5652818,simulado
+AVI-12,Granja avícola simulada 12,avicola,Postura,,,,1085,Villarrica,221359,5645427,simulado
+AVI-13,Granja avícola simulada 13,avicola,Postura,,,,893,Curarrehue,278254,5638062,simulado
+AVI-14,Granja avícola simulada 14,avicola,Postura,,,,6294,Curarrehue,281280,5640562,simulado
+AVI-15,Granja avícola simulada 15,avicola,Broiler,,,,3728,Pucón,273864,5643338,simulado
