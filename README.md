@@ -2,7 +2,7 @@
 
 Trabajo final del curso **Visualización de datos medioambientales**, Magíster en Recursos Naturales, Pontificia Universidad Católica de Chile.
 
-> ⚠️ **Los datos de este repositorio son simulados.** Todavía no se recogen datos de terreno de la tesis, así que se generó una base "tipo" con la estructura esperada. Los patrones que muestran las figuras son supuestos del ejercicio y **no son resultados ecológicos reales**.
+> ⚠️ **Los datos de este repositorio son simulados.** Todavía no se recogen datos de terreno de la tesis, así que se generó una base "tipo" con la estructura esperada. **No son resultados ecológicos reales**.
 
 ## 1. Contexto
 
