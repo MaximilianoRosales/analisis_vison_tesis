@@ -1,0 +1,9 @@
+parametro,valor,escala
+intercepto,0.1,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)
+cercania_piscicultura,0.9,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)
+cercania_ganaderia,0.35,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)
+cercania_avicola,0.25,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)
+cob_veg_riberena,0.5,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)
+n_refugios,0.3,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)
+altitud,-0.4,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)
+pct_urbano,-0.3,logit; predictores estandarizados (z); cercanía = -log(dist_rio + 50)

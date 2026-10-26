@@ -1,0 +1,61 @@
+paso,variable,n,detalle
+2. espacios,comuna,27,espacios sobrantes eliminados
+2. espacios,metodo,11,espacios sobrantes eliminados
+2. espacios,confiabilidad,6,espacios sobrantes eliminados
+2. faltantes,dist_rio_piscicultura_m,10,códigos -999 / s/d / - convertidos a NA
+2. faltantes,dist_rio_avicola_m,22,códigos -999 / s/d / - convertidos a NA
+2. faltantes,dist_rio_ganaderia_m,24,códigos -999 / s/d / - convertidos a NA
+2. faltantes,dist_rio_centro_m,17,códigos -999 / s/d / - convertidos a NA
+2. faltantes,cob_dosel_pct,4,códigos -999 / s/d / - convertidos a NA
+2. faltantes,pendiente_ribera_grados,2,códigos -999 / s/d / - convertidos a NA
+2. faltantes,temperatura_c,7,códigos -999 / s/d / - convertidos a NA
+3. duplicados,(fila completa),3,filas duplicadas eliminadas
+4. categorías,metodo,765,valores escritos de otra forma unificados
+4. categorías,comuna,116,valores escritos de otra forma unificados
+4. categorías,observador,127,valores escritos de otra forma unificados
+4. categorías,confiabilidad,118,valores escritos de otra forma unificados
+4. categorías,tipo_evidencia,135,valores escritos de otra forma unificados
+4. categorías,estado_camara,180,valores escritos de otra forma unificados
+4. categorías,nivel_rio,732,valores escritos de otra forma unificados
+4. categorías,deteccion,77,valores escritos de otra forma unificados
+4. categorías,refugio_troncos,65,valores escritos de otra forma unificados
+4. categorías,refugio_rocas,71,valores escritos de otra forma unificados
+4. categorías,refugio_madrigueras,68,valores escritos de otra forma unificados
+4. categorías,presencia_nutria,67,valores escritos de otra forma unificados
+4. categorías,presencia_zorro,73,valores escritos de otra forma unificados
+4. categorías,presencia_perro,67,valores escritos de otra forma unificados
+4. categorías,presencia_ganado_ribera,70,valores escritos de otra forma unificados
+5. números,horas_busqueda,473,coma decimal convertida a punto
+5. números,dens_centros_3km_km2,351,coma decimal convertida a punto
+5. números,cob_veg_riberena_pct,680,coma decimal convertida a punto
+5. números,ancho_franja_riberena_m,676,coma decimal convertida a punto
+5. números,cob_dosel_pct,617,coma decimal convertida a punto
+5. números,pendiente_ribera_grados,638,coma decimal convertida a punto
+5. números,ancho_cauce_m,679,coma decimal convertida a punto
+5. números,caudal_m3s,725,coma decimal convertida a punto
+5. números,pct_bosque_nativo_1km,702,coma decimal convertida a punto
+5. números,pct_plantacion_1km,674,coma decimal convertida a punto
+5. números,pct_agricola_1km,717,coma decimal convertida a punto
+5. números,pct_urbano_1km,331,coma decimal convertida a punto
+5. números,pct_otros_1km,644,coma decimal convertida a punto
+5. números,dens_caminos_1km,745,coma decimal convertida a punto
+5. números,conectividad_riberena,752,coma decimal convertida a punto
+5. números,lluvia_48h_mm,373,coma decimal convertida a punto
+5. números,temperatura_c,648,coma decimal convertida a punto
+5. números,experiencia_obs_anios,474,coma decimal convertida a punto
+5. fechas,fecha,636,fechas dd/mm/aaaa o d-m-aa llevadas a aaaa-mm-dd
+5. fechas,fecha_inicio_camara,109,fechas dd/mm/aaaa o d-m-aa llevadas a aaaa-mm-dd
+5. horas,hora,118,horas llevadas a HH:MM
+6. consistencia sitio,utm_este,1,valor distinto al resto del id_sitio -> moda
+6. consistencia sitio,utm_norte,2,valor distinto al resto del id_sitio -> moda
+6. consistencia sitio,rio,70,valor distinto al resto del id_sitio -> moda
+6. consistencia sitio,cob_veg_riberena_pct,1,valor distinto al resto del id_sitio -> moda
+6. consistencia sitio,cob_dosel_pct,1,valor distinto al resto del id_sitio -> moda
+6. consistencia sitio,cob_dosel_pct,18,NA completado con el valor del id_sitio
+6. consistencia sitio,pendiente_ribera_grados,12,NA completado con el valor del id_sitio
+6. consistencia sitio,ancho_cauce_m,1,valor distinto al resto del id_sitio -> moda
+6. consistencia sitio,altitud_msnm,1,valor distinto al resto del id_sitio -> moda
+6. consistencia visita,temperatura_c,1,valor distinto al resto del id_visita -> moda
+6. consistencia visita,temperatura_c,16,NA completado con el valor del id_visita
+7. rangos,lluvia_48h_mm,4,"fuera de rango [0, 300] -> NA"
+7. rangos,temperatura_c,4,"fuera de rango [-5, 40] -> NA"
