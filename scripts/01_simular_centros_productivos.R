@@ -41,7 +41,7 @@ poblados <- read_csv("data/raw/espacial/poblados_referencia.csv", show_col_types
 
 # --- Funciones auxiliares -----------------------------------------------------
 # Se trabaja con matrices de coordenadas (x, y) en metros y se convierte a sf al final.
-source("R/funciones/geometria.R")   # puntos_en_lineas(), a_sf(), etc.
+source("scripts/funciones/geometria.R")   # puntos_en_lineas(), a_sf(), etc.
 
 # Desplaza puntos una distancia (m) en una dirección aleatoria
 desplazar <- function(xy, dist_min, dist_max) {

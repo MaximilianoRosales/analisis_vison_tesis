@@ -38,7 +38,7 @@ suppressPackageStartupMessages({
 
 set.seed(20261020)
 crs_utm <- 32719
-source("R/funciones/geometria.R")
+source("scripts/funciones/geometria.R")
 
 # --- Parámetros del diseño -----------------------------------------------------
 N_SITIOS        <- 50
@@ -667,7 +667,7 @@ stopifnot(nrow(tabla) == N_SITIOS * N_VISITAS * length(METODOS))
 # =============================================================================
 # 10. Errores típicos de digitación -> archivo crudo
 # =============================================================================
-source("R/funciones/ensuciar_tabla.R")
+source("scripts/funciones/ensuciar_tabla.R")
 set.seed(777)
 crudo <- ensuciar_tabla(tabla, dicc)
 

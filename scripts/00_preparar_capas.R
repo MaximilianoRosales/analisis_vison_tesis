@@ -91,8 +91,8 @@ rios_raw <- st_read(archivo_rios[1], quiet = TRUE) |>
   st_transform(crs_utm) |>
   st_zm(drop = TRUE)
 
-source("R/funciones/estandarizar_red_hidrica.R")   # nombres de columnas DGA -> estándar
-source("R/funciones/geometria.R")
+source("scripts/funciones/estandarizar_red_hidrica.R")   # nombres de columnas DGA -> estándar
+source("scripts/funciones/geometria.R")
 
 # La red se conserva hasta 5 km fuera del área de estudio para no cortar ríos
 # que corren por el límite comunal (p. ej. el Toltén) y para mantener las
