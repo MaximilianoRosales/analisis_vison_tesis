@@ -1,0 +1,175 @@
+---
+title: "Exploracion quarto: Cámaras trampa y Visón americano"
+author: "Maximiliano Rosales Vergara"
+format: 
+  html:
+    code-fold: true
+date: today
+execute:
+  message: false
+  warning: false
+  output: false
+lang: es
+---
+
+Holis! Para esta exploración quise plotear los puntos gps de las cámaras trampa en un mapa. Recordar que los datos son simulados con ayuda de Claude.
+
+```{r}
+#| label: setup
+library(tidyverse)   # readr, dplyr, ggplot2
+library(sf)          # datos espaciales
+
+ruta_tabla <- "../data/clean/vison_muestreo_limpio.csv"
+ruta_gpkg  <- "../data/clean/vison_espacial.gpkg"
+crs_utm    <- 32719
+```
+
+```{r}
+#| label: leer-camaras
+vison <- read_csv(ruta_tabla, show_col_types = FALSE)
+
+camaras_visitas <- vison |>
+  filter(metodo == "camara_trampa")
+```
+
+```{r}
+#| label: resumir-camaras
+camaras <- camaras_visitas |>
+  group_by(id_camara, id_sitio, comuna, rio, utm_este, utm_norte) |>
+  summarise(
+    visitas_con_dato = sum(!is.na(deteccion)),
+    n_detecciones    = sum(deteccion, na.rm = TRUE),
+    dias_operativos  = sum(dias_camara, na.rm = TRUE),
+    n_fallas         = sum(estado_camara %in% c("falla_parcial", "falla_total")),
+    .groups = "drop"
+  ) |>
+  mutate(
+    resultado = if_else(n_detecciones > 0, "Visón detectado", "Sin detección"),
+    resultado = factor(resultado, levels = c("Visón detectado", "Sin detección"))
+  )
+
+camaras
+count(camaras, comuna, resultado)
+```
+
+```{r}
+#| label: a-sf
+camaras_sf <- camaras |>
+  st_as_sf(coords = c("utm_este", "utm_norte"), crs = crs_utm, remove = FALSE)
+
+camaras_sf
+```
+
+```{r}
+#| label: capas-base
+st_layers(ruta_gpkg)
+
+area    <- st_read(ruta_gpkg, layer = "area_estudio", quiet = TRUE)
+comunas <- st_read(ruta_gpkg, layer = "comunas",      quiet = TRUE)
+lagos   <- st_read(ruta_gpkg, layer = "lagos",        quiet = TRUE)
+rios    <- st_read(ruta_gpkg, layer = "rios",         quiet = TRUE) |>
+  filter(en_area)   # solo los tramos dentro del área de estudio
+```
+
+```{r}
+#| label: mapa-basico
+#| fig-width: 7
+#| fig-height: 6
+ggplot() +
+  geom_sf(data = comunas) +
+  geom_sf(data = lagos, fill = "lightblue") +
+  geom_sf(data = rios, colour = "steelblue") +
+  geom_sf(data = camaras_sf, colour = "red")
+```
+
+```{r}
+#| label: etiquetas
+# Etiquetas: un punto dentro de cada polígono
+etiq_comunas <- comunas |> st_point_on_surface()
+etiq_lago    <- lagos |>
+  filter(nombre_lago == "Lago Villarrica") |>
+  st_point_on_surface()
+```
+
+```{r}
+#| label: fig-mapa-camaras
+#| fig-cap: "Ubicación de las 50 cámaras trampa y resultado acumulado de las cuatro visitas (datos simulados)."
+#| fig-width: 8
+#| fig-height: 7
+#| output: true
+colores_resultado <- c("Visón detectado" = "#C0392B", "Sin detección" = "#7F8C8D")
+
+mapa_camaras <- ggplot() +
+  geom_sf(data = comunas, fill = "grey97", colour = "grey60", linewidth = 0.4) +
+  geom_sf(data = rios, aes(linewidth = strahler), colour = "#5DADE2",
+          show.legend = FALSE) +
+  scale_linewidth(range = c(0.15, 1)) +
+  geom_sf(data = lagos, fill = "#AED6F1", colour = "#5DADE2", linewidth = 0.2) +
+  geom_sf(data = area, fill = NA, colour = "grey20", linewidth = 0.6) +
+  geom_sf(data = camaras_sf, aes(fill = resultado),
+          shape = 21, size = 2.8, colour = "white", stroke = 0.6) +
+  scale_fill_manual(values = colores_resultado, name = "Cámara trampa") +
+  geom_sf_text(data = etiq_comunas, aes(label = toupper(comuna)),
+               size = 3.2, colour = "grey35", fontface = "bold") +
+  geom_sf_text(data = etiq_lago, aes(label = nombre_lago),
+               size = 3, colour = "#1F618D", fontface = "italic") +
+  coord_sf(crs = crs_utm, datum = 4326, expand = FALSE) +
+  labs(
+    title = "Cámaras trampa para monitoreo de visón americano",
+    subtitle = "Riberas de la cuenca del Toltén: Villarrica, Pucón y Curarrehue",
+    caption = "Datos simulados. Capas base: DGA y chilemapas. Proyección: UTM 19S (EPSG:32719).",
+    x = NULL, y = NULL
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_line(colour = "grey90", linewidth = 0.2),
+    plot.title = element_text(face = "bold")
+  )
+
+mapa_camaras
+```
+
+```{r}
+#| label: tbl-camaras
+#| tbl-cap: "Resumen por cámara trampa."
+#| output: true
+camaras |>
+  arrange(comuna, id_camara) |>
+  select(Cámara = id_camara, Sitio = id_sitio, Comuna = comuna, Río = rio,
+         `UTM E` = utm_este, `UTM N` = utm_norte,
+         `Días operativos` = dias_operativos, Fallas = n_fallas,
+         Detecciones = n_detecciones, Resultado = resultado) |>
+  knitr::kable()
+```
+
+```{r}
+#| label: mapa-interactivo
+#| output: true
+library(leaflet)
+
+camaras_wgs <- st_transform(camaras_sf, 4326)
+paleta <- colorFactor(unname(colores_resultado), levels = names(colores_resultado))
+
+leaflet(camaras_wgs) |>
+  addProviderTiles(providers$Esri.WorldImagery, group = "Satélite") |>
+  addProviderTiles(providers$OpenStreetMap, group = "Calles") |>
+  addPolygons(data = st_transform(comunas, 4326), fill = FALSE,
+              color = "white", weight = 1.5) |>
+  addCircleMarkers(
+    radius = 6, stroke = TRUE, color = "white", weight = 1,
+    fillColor = ~paleta(resultado), fillOpacity = 0.9,
+    popup = ~paste0("<b>", id_camara, "</b> (", id_sitio, ")<br>",
+                    rio, ", ", comuna, "<br>",
+                    "Días operativos: ", dias_operativos, "<br>",
+                    "Detecciones: ", n_detecciones)
+  ) |>
+  addLegend(pal = paleta, values = ~resultado, title = "Cámara trampa") |>
+  addLayersControl(baseGroups = c("Satélite", "Calles"))
+```
+
+Le pedí ayuda a claude para generar los códigos. Me ayudó a genera un mapa típico, donde se visualiza en cuáles cámaras se detectó visón vs las cámaras que no (@fig-mapa-camaras). Me aconsejó hacer un @mapa-interactivo y lo encontré demasiado bacán! 
+
+Similar al ejemplo visto en el taller de Riva, quise dejar la opción de visualizar el código, si el lector lo desea (format: html: code-fold: true). Además, si uno en el JAML del encabezado agrega la opción execute: output: false, se puede ocultar los resultados de los códigos, salvo si uno lo especifica en el chunk (output: true) como en el @mapa-interactivo, @tbl-camaras y @fig-mapa-camaras). Poder llamar a las figuras lo encuentro muy bacán!
+
+Se generó una @tbl-camaras con la metadata que consideré importante de las cámaras trampa. Para este ejemplo, se detectaron `r sum(camaras$n_detecciones)` (<- agregado con código de r! con r sum(camaras$n_detecciones)

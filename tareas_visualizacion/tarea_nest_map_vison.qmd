@@ -1,0 +1,241 @@
+---
+title: "group_by / nest / map: distancia a centros productivos y detección de visón"
+author: "Maximiliano Rosales"
+date: today
+lang: es
+format:
+  html:
+    toc: true
+    embed-resources: true
+execute:
+  message: false
+---
+
+## 1. Tema, pregunta y datos
+
+Mi tema es la detección de visón americano en riberas de la cuenca del Toltén y su relación con la distancia (por río) a centros productivos (pisciculturas, avícolas y ganaderías). La base tiene 800 registros: 50 sitios × 4 métodos de muestreo × 4 visitas. Son datos simulados, así que el ejercicio sirve para practicar el flujo de trabajo y no para concluir sobre el sistema real.
+
+**Pregunta:** ¿cómo cambia la probabilidad de detección con la distancia a un centro productivo, y esa relación es distinta entre grupos de datos?
+
+Eso implica ajustar **el mismo modelo varias veces** (más de tres), que es justo la regla de la clase: si tengo que hacer lo mismo tres o más veces, escribo una función y la aplico con `nest` + `map`.
+
+**Dos decisiones de partida:**
+
+- **`glm` binomial en vez de `lm`.** La respuesta (`deteccion`) es 0/1, y un `lm` sobre 0/1 predice valores fuera de [0, 1]. `glance`, `tidy` y `augment` funcionan igual con `glm`. Como `glm` no entrega R², calculo un pseudo-R² = 1 − devianza / devianza nula.
+- **Predictor: `log10(dist_rio_centro_m)`.** La distancia va de 65 a 29.000 m y es muy asimétrica; el logaritmo estabiliza el ajuste.
+
+```{r}
+#| label: setup
+library(tidyverse)   # incluye dplyr, tidyr, purrr, forcats y ggplot2
+library(broom)
+
+vison <- read_csv("/Users/maximilianorosalesvergara/Desktop/Magister Recursos Naturales/Visualización de datos medioambientales/analisis_vison_tesis/analisis_vison_tesis/data/clean/vison_muestreo_limpio.csv")   # el csv debe estar junto al .qmd
+```
+
+## 2. La regla de la clase: una función en vez de copias
+
+Defino una vez el modelo y una vez todo el proceso de extracción. Las dos funciones se usan en los dos casos de más abajo, así que no repito código.
+
+```{r}
+#| label: funciones
+ajustar_logit <- function(df) {
+  glm(deteccion ~ log_dist, data = df, family = binomial)
+}
+
+ajustar_todo <- function(nested) {
+  nested |>
+    mutate(
+      modelo    = map(data, ajustar_logit),
+      glance    = map(modelo, glance),
+      tidy      = map(modelo, tidy),
+      augment   = map(modelo, augment, type.predict = "response"),
+      pseudo_r2 = map_dbl(glance, \(g) 1 - g$deviance / g$null.deviance)
+    )
+}
+```
+
+## 3. Caso 1: un modelo por río (intento descartado)
+
+**Por qué lo probé:** el río es la unidad geográfica más natural. Agrupo por comuna y río, igual que continente y país en el ejemplo de la clase. El río Pucón o Minetue cruza dos comunas, así que queda como dos grupos (un tramo por comuna).
+
+**Filtro:** solo grupos con 5 o más detecciones. Con 0 o 1 detecciones el modelo no converge o da coeficientes absurdos. Primero quito las filas sin detección (cámaras en instalación o con falla total) y sin distancia, y después filtro los grupos. Por ese orden, el río Huiscapi quedó bajo el umbral y salió.
+
+```{r}
+#| label: caso-rio
+vison_rio <- vison |>
+  filter(!is.na(deteccion), !is.na(dist_rio_centro_m)) |>
+  mutate(log_dist = log10(dist_rio_centro_m)) |>
+  group_by(comuna, rio) |>
+  filter(sum(deteccion) >= 5) |>
+  ungroup()
+
+# nest: una fila por río; la columna `data` guarda la mini base de datos de ese río
+by_rio <- vison_rio |>
+  group_by(comuna, rio) |>
+  nest() |>
+  ungroup() |>
+  ajustar_todo()
+
+by_rio |> select(comuna, rio, data, modelo)
+```
+
+Ahora extraigo la pendiente de cada modelo con `tidy` y la comparo con el número de sitios distintos de cada río:
+
+```{r}
+#| label: diagnostico-rio
+diag_rio <- vison_rio |>
+  group_by(comuna, rio) |>
+  summarise(filas = n(), sitios = n_distinct(id_sitio),
+            detecciones = sum(deteccion), .groups = "drop")
+
+by_rio |>
+  select(comuna, rio, tidy) |>
+  unnest(tidy) |>
+  filter(term == "log_dist") |>
+  left_join(diag_rio, by = c("comuna", "rio")) |>
+  select(comuna, rio, filas, sitios, estimate, std.error, p.value)
+```
+
+**Por qué lo descarté:** la distancia es una propiedad del **sitio** (es constante dentro de cada sitio) y cada río tiene entre 1 y 7 sitios. Las 15 a 104 filas por río son visitas y métodos repetidos sobre los mismos puntos, no muestras independientes. Consecuencias: los ríos con 1 sitio tienen pendiente `NA`, porque la distancia no varía y no hay pendiente que estimar; el de 2 sitios tiene pendiente 0 sin información real; y los ríos "significativos" se estiman con 4 o 5 valores distintos de distancia, por lo que sus p-valores no son confiables. `nest` + `map` hicieron lo que debían; lo que falló fue la elección de la agrupación, y verlo caso a caso es una ventaja de este flujo.
+
+## 4. Caso 2: un modelo por método de muestreo × comuna
+
+**Por qué esta agrupación:** la detectabilidad cambia según el método, y la comuna agrega un componente geográfico, como el continente en la clase. Cada grupo tiene entre 13 y 19 sitios, así que la distancia sí varía dentro de cada grupo. Excluyo `avistamiento` porque tiene solo 10 detecciones en 192 filas y casi no aporta información. Quedan 9 grupos; el más chico tiene 9 detecciones.
+
+### 4.1 Exploración previa
+
+Antes de modelar, una curva logística por grupo, el equivalente al gráfico con una línea por país de la clase:
+
+```{r}
+#| label: exploratorio
+#| fig-width: 8
+#| fig-height: 5
+base_metodo <- vison |>
+  filter(!is.na(deteccion), !is.na(dist_rio_centro_m), metodo != "avistamiento") |>
+  mutate(log_dist = log10(dist_rio_centro_m))
+
+base_metodo |>
+  ggplot(aes(x = log_dist, y = deteccion,
+             group = interaction(metodo, comuna),
+             colour = metodo, linetype = comuna)) +
+  geom_smooth(method = "glm", method.args = list(family = binomial), se = FALSE) +
+  coord_cartesian(ylim = c(0, 1)) +
+  labs(x = "log10(distancia por río al centro)", y = "Probabilidad de detección",
+       colour = "Método", linetype = "Comuna") +
+  theme_minimal()
+```
+
+### 4.2 `group_by` + `nest` + `map`
+
+```{r}
+#| label: caso-metodo
+by_metodo <- base_metodo |>
+  group_by(metodo, comuna) |>
+  nest() |>
+  ungroup() |>
+  ajustar_todo() |>
+  mutate(grupo = paste(metodo, comuna, sep = " · "))
+
+by_metodo |> select(metodo, comuna, data, modelo)
+```
+
+### 4.3 Extraer con `glance`, `tidy` y `augment`
+
+- **`glance`**: una fila por modelo, para comparar la calidad del ajuste.
+- **`tidy`**: la pendiente de cada grupo. Con `exp(pendiente)` obtengo cuánto se multiplican las probabilidades (odds) de detección cada vez que la distancia se multiplica por 10.
+- **`augment`**: las probabilidades ajustadas por observación, que uso para graficar las curvas.
+
+```{r}
+#| label: extraer
+by_metodo |>
+  select(grupo, glance) |>
+  unnest(glance) |>
+  select(grupo, nobs, null.deviance, deviance, AIC)
+
+coefs_m <- by_metodo |>
+  select(metodo, comuna, grupo, tidy) |>
+  unnest(tidy) |>
+  filter(term == "log_dist") |>
+  mutate(razon_odds_x10 = exp(estimate))
+
+coefs_m |> select(grupo, estimate, std.error, p.value, razon_odds_x10)
+
+by_metodo |>
+  select(grupo, augment) |>
+  unnest(augment) |>
+  head()
+```
+
+### 4.4 ¿Hay un patrón por método o comuna? (pseudo-R²)
+
+```{r}
+#| label: grafico-r2
+#| fig-width: 7
+#| fig-height: 4
+by_metodo |>
+  ggplot(aes(x = pseudo_r2, y = fct_reorder(grupo, pseudo_r2), colour = comuna)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(x = expression(R^2), y = NULL, colour = "Comuna") +
+  theme_classic(14)
+```
+
+### 4.5 Pendientes con intervalo aproximado
+
+En un modelo binario, la pendiente importa más que el R². Un valor a la izquierda del 0 significa menos detección lejos de los centros productivos.
+
+```{r}
+#| label: grafico-pendientes
+#| fig-width: 7
+#| fig-height: 4
+coefs_m |>
+  ggplot(aes(x = estimate, y = metodo, colour = comuna)) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_pointrange(aes(xmin = estimate - 1.96 * std.error,
+                      xmax = estimate + 1.96 * std.error),
+                  position = position_dodge(width = 0.5)) +
+  labs(x = "Pendiente de log10(distancia por río al centro)", y = NULL,
+       colour = "Comuna") +
+  theme_minimal()
+```
+
+### 4.6 Los tres peores ajustes, por separado (`slice_min`)
+
+```{r}
+#| label: slice-min
+#| fig-width: 8
+#| fig-height: 3.5
+by_metodo |>
+  slice_min(pseudo_r2, n = 3) |>
+  unnest(augment) |>
+  ggplot(aes(x = log_dist, y = deteccion)) +
+  geom_jitter(height = 0.05, alpha = 0.5) +
+  geom_line(aes(y = .fitted), colour = "red") +
+  facet_wrap(vars(grupo)) +
+  labs(x = "log10(distancia por río al centro)", y = "Detección (0/1)") +
+  theme_minimal()
+```
+
+### 4.7 Lectura de los resultados
+
+- **Todas las pendientes son negativas** (de −0,06 a −3,94): al alejarse de los centros productivos baja la probabilidad de detección. Por ejemplo, una pendiente de −1,1 equivale a que las odds de detección quedan en alrededor de un tercio cada vez que la distancia se multiplica por 10.
+- **Los pseudo-R² son bajos en casi todos los grupos** (menos de 0,15). La excepción es cámara-trampa en Villarrica (0,48), pero son 39 filas y 9 detecciones: es el ajuste más alto y también el más frágil, así que no lo presento como el mejor.
+- **Hay un patrón por método:** los dos peores ajustes son de `fecas` (Curarrehue y Pucón), con pendientes casi planas. El tercero es cámara-trampa en Pucón.
+- **Por comuna,** Pucón muestra relaciones más débiles que las otras dos.
+
+## 5. Limitaciones
+
+- **Dependencia dentro de sitio:** cada sitio aporta cuatro visitas, y esas filas no son independientes. Los p-valores salen inflados, así que los uso para ordenar los casos y no como veredicto. Lo correcto sería un modelo mixto (`glmer` con `(1 | id_sitio)`), que queda fuera de esta clase.
+- **Grupos con pocas detecciones:** con 9 a 20 detecciones por grupo y un predictor, las estimaciones son frágiles.
+- **Datos simulados:** los patrones valen para practicar el flujo, no para concluir sobre ecología.
+
+## 6. Resumen: qué hace cada herramienta y por qué la usé
+
+| Herramienta | Qué hace aquí | Por qué la usé |
+|---|---|---|
+| `group_by` | Define los grupos (comuna × río, y luego método × comuna) | La pregunta es si la relación cambia entre grupos |
+| `nest` | Guarda los datos de cada grupo en una celda (`data`) | Cada grupo se modela por separado sin escribir un bucle |
+| `map` | Aplica `ajustar_logit` a cada grupo | Es el mismo modelo 9 a 12 veces: una función, no copias |
+| `glance` | Resumen de ajuste por modelo | Compara la calidad del ajuste entre grupos (pseudo-R², AIC) |
+| `tidy` | Pendiente de cada modelo | Mide el efecto de la distancia en cada grupo |
+| `augment` | Probabilidades ajustadas | Dibuja las curvas ajustadas sobre los datos |
+| `slice_min` | Selecciona los peores ajustes | Los mira uno por uno para entender por qué ajustan mal |
