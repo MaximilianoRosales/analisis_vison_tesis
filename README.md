@@ -54,7 +54,7 @@ Cada fila es un sitio de muestreo en una ribera. Variables principales:
 | `fecha` | Fecha del registro |
 | `presencia` | 1 = presencia de visón, 0 = ausencia |
 
-El diccionario completo irá en `docs/diccionario_datos.md`.
+El diccionario completo irá en `docs/diccionario_datos.csv`.
 
 ## 5. Resultados
 
