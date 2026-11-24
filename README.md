@@ -39,15 +39,6 @@ Este proyecto se basa en mi tesis de magíster, que estudia la presencia/ausenci
 └── docs/
     └── diccionario_datos.csv/.  # diccionario de datos y notas
 ```
-
-| Carpeta | Contenido |
-|------------------------------------|------------------------------------|
-| `data/raw` | Base simulada de detecciones |
-| `data/processed` | Datos validados y transformados (factores, unidades, versión espacial). |
-| `scripts` | `01_simular_datos.R` → `02_limpieza.R` → `03_visualizacion.R` |
-| `figures` | Figuras finales en PNG. |
-| `docs` | Diccionario de variables y notas metodológicas. |
-
 ## 4. Datos
 
 Cada fila es un sitio de muestreo en una ribera. Variables principales:
