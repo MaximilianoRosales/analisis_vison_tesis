@@ -28,7 +28,7 @@ suppressPackageStartupMessages({
   library(sf)
 })
 
-dicc <- read_csv("docs/diccionario_datos.csv", show_col_types = FALSE,
+dicc <- read_csv("documentos/diccionario_datos.csv", show_col_types = FALSE,
                  col_types = cols(.default = col_character()))
 dir.create("data/clean", showWarnings = FALSE)
 
