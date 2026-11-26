@@ -13,6 +13,7 @@ suppressPackageStartupMessages({
   library(sf)
   library(dplyr)
   library(ggplot2)
+  library(ggimage)
 })
 
 gpkg <- "data/clean/vison_espacial.gpkg"
@@ -31,12 +32,29 @@ centros <- leer("centros_productivos") |>
 
 col_agua <- "#2C7FB8"
 
+# Ruta del ícono según el tipo de centro, y coordenadas como columnas
+iconos <- c("Piscicultura" = "figures/iconos/piscicultura.png",
+            "Ganadería"    = "figures/iconos/ganaderia.png",
+            "Avícola"      = "figures/iconos/avicola.png")
+
+colores <- c("Piscicultura" = "#7B3294",
+             "Ganadería"    = "#8C510A",
+             "Avícola"      = "#E66101")
+
+centros_img <- centros |>
+  st_drop_geometry() |>
+  mutate(icono = unname(iconos[tipo]),
+         color = unname(colores[tipo]))
+
 mapa <- ggplot() +
   geom_sf(data = comunas, fill = "grey95", colour = "grey55", linewidth = 0.3) +
   geom_sf(data = area, fill = NA, colour = "grey20", linewidth = 0.6, linetype = "dashed") +
   geom_sf(data = lagos, fill = col_agua, colour = col_agua, alpha = 0.6) +
   geom_sf(data = rios, colour = col_agua, linewidth = 0.25, alpha = 0.8) +
-  geom_sf(data = centros, aes(shape = tipo), colour = "#D95F02", size = 2.2, alpha = 0.9) +
+  geom_image(data = centros_img,
+             aes(x = utm_este, y = utm_norte, image = icono, color = color),
+             size = 0.03) +
+  scale_color_identity() +
   geom_sf(data = sitios, aes(fill = "Sitio de muestreo"),
           shape = 21, colour = "white", size = 1.8, stroke = 0.3) +
   scale_shape_manual(name = "Centro productivo (simulado)",
@@ -58,7 +76,7 @@ if (requireNamespace("ggspatial", quietly = TRUE)) {
     ggspatial::annotation_north_arrow(location = "tr", which_north = "true",
                                       style = ggspatial::north_arrow_minimal())
 }
-
+mapa
 dir.create("figures", showWarnings = FALSE)
 ggsave("figures/mapa_area_estudio.png", mapa, width = 8, height = 6.5, dpi = 300, bg = "white")
 message("Mapa guardado en figures/mapa_area_estudio.png")
