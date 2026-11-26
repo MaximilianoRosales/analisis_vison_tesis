@@ -21,24 +21,23 @@ Aún no se han recolectado datos de terreno. Todas las tablas, mapas y gráficos
 
 # Introducción
 
-<!-- TODO: contexto breve (2-4 líneas): por qué importa el visón americano en esta zona. -->
+Diversos estudios sobre especies invasoras en la Patagonia han identificado que diferentes centros productivos agrícolas y pecuarios brindan recursos clave que favorecen la presencia del visón americano (*Neovison vison)* en los ríos próximos a estos centros (Failla et al. 2019; Lopez et al. 2023), planteando serios problemas para la conservación de fauna, generando, además, pérdidas económicas para productores rurales (Lopez et al. 2023). Estudiar cómo las características del paisaje, y, en este caso, la distancia a centros productivos, condicionan la presencia o ausencia del visón es fundamental para identificar zonas de alto riesgo y para diseñar estrategias de control eficientes que prevengan su expansión a otras cuencas hidrográficas. 
 
-**Pregunta de investigación:** <!-- TODO: escribir con tus palabras -->
+## Preguntas de investigación
 
-**Hipótesis:** <!-- TODO: escribir con tus palabras -->
+1.  ¿Dónde se encuentra el visón americano en el área de estudio?
+2.  ¿Afecta la distancia a los centros productivos ganaderos la detección del visón en las cámaras trampa?
+3.  Si la afecta, ¿de qué manera?
+
+## Hipótesis
+
+A menor distancia a centros productivos ganaderos, mayor probabilidad de detección del visón americano.
 
 # Área de estudio
 
 El estudio se ubica desde las proximidades del Lago Villarrica hasta la cordillera, en las comunas de **Villarrica, Pucón y Curarrehue** (Región de La Araucanía). Incluye los ríos Trancura, Liucura y Pucón con sus afluentes, además del río Toltén aguas abajo del lago. Las coordenadas están en UTM huso 19S.
 
 ![Área de estudio: red hídrica, sitios de muestreo y centros productivos. Los sitios y centros son simulados.](figures/mapa_area_estudio.png){#fig-area fig-alt="Mapa del área de estudio con comunas, ríos, lagos, sitios de muestreo y centros productivos simulados"}
-
-\
-<!-- Mapa: se genera con scripts/04_mapa_area_estudio.R y se guarda en figures/ -->
-
-<!-- ![Área de estudio y red hídrica](figures/mapa_area_estudio.png) -->
-
-*(Mapa en preparación.)*
 
 # Métodos
 
@@ -54,7 +53,11 @@ Se registra la presencia o ausencia de visón en sitios ribereños mediante cuat
 
 ## Variables
 
-<!-- TODO: variable respuesta (presencia/ausencia) y predictora principal (distancia a centros productivos). -->
+- **Variable respuesta:** detección de visón (`deteccion`), binaria: 1 si se detectó y 0 si no, en cada registro de un sitio y visita.
+- **Variable predictora principal:** distancia al predio ganadero más cercano, según la hipótesis. Se calcula de dos formas: en línea recta (`dist_euc_ganaderia_m`) y a lo largo de la red hídrica (`dist_rio_ganaderia_m`).
+- **Variables de comparación:** distancias equivalentes a pisciculturas y granjas avícolas, y a cualquier centro productivo (`dist_euc_centro_m`).
+
+El detalle de cada variable está en el diccionario de datos del repositorio (`documentos/diccionario_datos.csv`).
 
 # Datos
 
