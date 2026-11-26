@@ -7,6 +7,20 @@
     "text": "AdvertenciaDatos simulados\n\n\n\nAún no se han recolectado datos de terreno. Todas las tablas, mapas y gráficos de este sitio provienen de una base de datos simulada y tienen fines ilustrativos y metodológicos. No son resultados reales del estudio."
   },
   {
+    "objectID": "index.html#preguntas-de-investigación",
+    "href": "index.html#preguntas-de-investigación",
+    "title": "Visón americano en riberas de La Araucanía",
+    "section": "Preguntas de investigación",
+    "text": "Preguntas de investigación\n\n¿Dónde se encuentra el visón americano en el área de estudio?\n¿Afecta la distancia a los centros productivos ganaderos la detección del visón en las cámaras trampa?\nSi la afecta, ¿de qué manera?"
+  },
+  {
+    "objectID": "index.html#hipótesis",
+    "href": "index.html#hipótesis",
+    "title": "Visón americano en riberas de La Araucanía",
+    "section": "Hipótesis",
+    "text": "Hipótesis\nA menor distancia a centros productivos ganaderos, mayor probabilidad de detección del visón americano."
+  },
+  {
     "objectID": "index.html#diseño-de-muestreo",
     "href": "index.html#diseño-de-muestreo",
     "title": "Visón americano en riberas de La Araucanía",
@@ -25,7 +39,7 @@
     "href": "index.html#variables",
     "title": "Visón americano en riberas de La Araucanía",
     "section": "Variables",
-    "text": "Variables"
+    "text": "Variables\n\nVariable respuesta: detección de visón (deteccion), binaria: 1 si se detectó y 0 si no, en cada registro de un sitio y visita.\nVariable predictora principal: distancia al predio ganadero más cercano, según la hipótesis. Se calcula de dos formas: en línea recta (dist_euc_ganaderia_m) y a lo largo de la red hídrica (dist_rio_ganaderia_m).\nVariables de comparación: distancias equivalentes a pisciculturas y granjas avícolas, y a cualquier centro productivo (dist_euc_centro_m).\n\nEl detalle de cada variable está en el diccionario de datos del repositorio (documentos/diccionario_datos.csv)."
   },
   {
     "objectID": "index.html#exploración-de-los-datos",
