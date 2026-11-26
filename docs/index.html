@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Maximiliano Rosales Vergara">
 
 <title>Visón americano en riberas de La Araucanía</title>
 <style>
@@ -57,17 +58,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
@@ -86,8 +87,8 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Visón americano en riberas de La Araucanía</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -107,8 +108,29 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#área-de-estudio" id="toc-área-de-estudio" class="nav-link" data-scroll-target="#área-de-estudio">Área de estudio</a></li>
+  <li><a href="#métodos" id="toc-métodos" class="nav-link" data-scroll-target="#métodos">Métodos</a>
+  <ul class="collapse">
+  <li><a href="#diseño-de-muestreo" id="toc-diseño-de-muestreo" class="nav-link" data-scroll-target="#diseño-de-muestreo">Diseño de muestreo</a></li>
+  <li><a href="#datos-simulados-1" id="toc-datos-simulados-1" class="nav-link" data-scroll-target="#datos-simulados-1">Datos simulados</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
+  </ul></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#resultados-ilustrativos" id="toc-resultados-ilustrativos" class="nav-link" data-scroll-target="#resultados-ilustrativos">Resultados (ilustrativos)</a>
+  <ul class="collapse">
+  <li><a href="#exploración-de-los-datos" id="toc-exploración-de-los-datos" class="nav-link" data-scroll-target="#exploración-de-los-datos">Exploración de los datos</a></li>
+  <li><a href="#presencia-de-visón-y-distancia-a-centros-productivos" id="toc-presencia-de-visón-y-distancia-a-centros-productivos" class="nav-link" data-scroll-target="#presencia-de-visón-y-distancia-a-centros-productivos">Presencia de visón y distancia a centros productivos</a></li>
+  </ul></li>
+  <li><a href="#discusión-y-próximos-pasos" id="toc-discusión-y-próximos-pasos" class="nav-link" data-scroll-target="#discusión-y-próximos-pasos">Discusión y próximos pasos</a></li>
+  <li><a href="#reproducibilidad" id="toc-reproducibilidad" class="nav-link" data-scroll-target="#reproducibilidad">Reproducibilidad</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -116,13 +138,26 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Visón americano en riberas de La Araucanía</h1>
+<p class="subtitle lead">Presencia, detección y distancia a centros productivos</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Maximiliano Rosales Vergara </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">25 de noviembre de 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -132,8 +167,93 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Datos simulados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aún no se han recolectado datos de terreno. Todas las tablas, mapas y gráficos de este sitio provienen de una base de datos <strong>simulada</strong> y tienen fines ilustrativos y metodológicos. <strong>No son resultados reales</strong> del estudio.</p>
+</div>
+</div>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<!-- TODO: contexto breve (2-4 líneas): por qué importa el visón americano en esta zona. -->
+<p><strong>Pregunta de investigación:</strong> <!-- TODO: escribir con tus palabras --></p>
+<p><strong>Hipótesis:</strong> <!-- TODO: escribir con tus palabras --></p>
+</section>
+<section id="área-de-estudio" class="level1">
+<h1>Área de estudio</h1>
+<p>El estudio se ubica desde las proximidades del Lago Villarrica hasta la cordillera, en las comunas de <strong>Villarrica, Pucón y Curarrehue</strong> (Región de La Araucanía). Incluye los ríos Trancura, Liucura y Pucón con sus afluentes, además del río Toltén aguas abajo del lago. Las coordenadas están en UTM huso 19S.</p>
+<!-- Mapa: se genera con scripts/04_mapa_area_estudio.R y se guarda en figures/ -->
+<!-- ![Área de estudio y red hídrica](figures/mapa_area_estudio.png) -->
+<p><em>(Mapa en preparación.)</em></p>
+</section>
+<section id="métodos" class="level1">
+<h1>Métodos</h1>
+<section id="diseño-de-muestreo" class="level2">
+<h2 class="anchored" data-anchor-id="diseño-de-muestreo">Diseño de muestreo</h2>
+<p>Se registra la presencia o ausencia de visón en sitios ribereños mediante cuatro métodos de detección: huellas, fecas, cámaras trampa y avistamiento.</p>
+<!-- TODO: número de sitios, criterio de selección, esfuerzo de muestreo, visitas repetidas. -->
+</section>
+<section id="datos-simulados-1" class="level2">
+<h2 class="anchored" data-anchor-id="datos-simulados-1">Datos simulados</h2>
+<!-- TODO: explicar qué parámetros se simularon (ver data/simulacion/parametros_simulacion.csv) y por qué. -->
+</section>
+<section id="variables" class="level2">
+<h2 class="anchored" data-anchor-id="variables">Variables</h2>
+<!-- TODO: variable respuesta (presencia/ausencia) y predictora principal (distancia a centros productivos). -->
+</section>
+</section>
+<section id="datos" class="level1">
+<h1>Datos</h1>
+<p>Flujo de trabajo, desde los datos crudos hasta la tabla analizable:</p>
+<ol type="1">
+<li>Preparación de capas base (<code>00_preparar_capas.R</code>)</li>
+<li>Simulación de centros productivos (<code>01_simular_centros_productivos.R</code>)</li>
+<li>Simulación del muestreo (<code>02_simular_muestreo.R</code>)</li>
+<li>Limpieza de datos (<code>03_limpiar_datos.R</code>)</li>
+</ol>
+<!-- TODO: tabla resumen de la limpieza (data/clean/registro_limpieza.csv) y enlace al diccionario de datos. -->
+</section>
+<section id="resultados-ilustrativos" class="level1">
+<h1>Resultados (ilustrativos)</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta sección usa datos simulados. Sirve para mostrar cómo se presentarán los resultados cuando existan datos reales.</p>
+</div>
+</div>
+<section id="exploración-de-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="exploración-de-los-datos">Exploración de los datos</h2>
+<!-- TODO: número de sitios y visitas, detecciones por método. -->
+</section>
+<section id="presencia-de-visón-y-distancia-a-centros-productivos" class="level2">
+<h2 class="anchored" data-anchor-id="presencia-de-visón-y-distancia-a-centros-productivos">Presencia de visón y distancia a centros productivos</h2>
+<!-- TODO: figura principal y, más adelante, modelo. -->
+</section>
+</section>
+<section id="discusión-y-próximos-pasos" class="level1">
+<h1>Discusión y próximos pasos</h1>
+<!-- TODO: limitaciones del diseño y de la simulación; plan de campaña de terreno. -->
+</section>
+<section id="reproducibilidad" class="level1">
+<h1>Reproducibilidad</h1>
+<p>Todo el código y los datos están en el <a href="https://github.com/MaximilianoRosales/analisis_vison_tesis">repositorio de GitHub</a>. Para regenerar la base de datos simulada, ejecuta <code>scripts/ejecutar_todo.R</code> desde la raíz del proyecto.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -161,12 +281,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiado");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiado");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

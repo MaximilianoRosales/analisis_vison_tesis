@@ -13,8 +13,9 @@ execute:
   message: false
 ---
 
-::: {.callout-warning}
+::: callout-warning
 ## Datos simulados
+
 Aún no se han recolectado datos de terreno. Todas las tablas, mapas y gráficos de este sitio provienen de una base de datos **simulada** y tienen fines ilustrativos y metodológicos. **No son resultados reales** del estudio.
 :::
 
@@ -31,6 +32,7 @@ Aún no se han recolectado datos de terreno. Todas las tablas, mapas y gráficos
 El estudio se ubica desde las proximidades del Lago Villarrica hasta la cordillera, en las comunas de **Villarrica, Pucón y Curarrehue** (Región de La Araucanía). Incluye los ríos Trancura, Liucura y Pucón con sus afluentes, además del río Toltén aguas abajo del lago. Las coordenadas están en UTM huso 19S.
 
 <!-- Mapa: se genera con scripts/04_mapa_area_estudio.R y se guarda en figures/ -->
+
 <!-- ![Área de estudio y red hídrica](figures/mapa_area_estudio.png) -->
 
 *(Mapa en preparación.)*
@@ -55,16 +57,16 @@ Se registra la presencia o ausencia de visón en sitios ribereños mediante cuat
 
 Flujo de trabajo, desde los datos crudos hasta la tabla analizable:
 
-1. Preparación de capas base (`00_preparar_capas.R`)
-2. Simulación de centros productivos (`01_simular_centros_productivos.R`)
-3. Simulación del muestreo (`02_simular_muestreo.R`)
-4. Limpieza de datos (`03_limpiar_datos.R`)
+1.  Preparación de capas base (`00_preparar_capas.R`)
+2.  Simulación de centros productivos (`01_simular_centros_productivos.R`)
+3.  Simulación del muestreo (`02_simular_muestreo.R`)
+4.  Limpieza de datos (`03_limpiar_datos.R`)
 
 <!-- TODO: tabla resumen de la limpieza (data/clean/registro_limpieza.csv) y enlace al diccionario de datos. -->
 
 # Resultados (ilustrativos)
 
-::: {.callout-note}
+::: callout-note
 Esta sección usa datos simulados. Sirve para mostrar cómo se presentarán los resultados cuando existan datos reales.
 :::
 
