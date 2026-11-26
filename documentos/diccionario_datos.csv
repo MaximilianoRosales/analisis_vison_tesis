@@ -1,0 +1,89 @@
+variable,nombre_raw,categoria,descripcion,tipo,unidad,valores_permitidos,min,max,nivel,origen
+id_registro,N° registro,1. Identificación y diseño,Identificador único de la fila (sitio × visita × método),entero,,,1,,registro,generado
+id_sitio,Sitio,1. Identificación y diseño,Identificador del sitio de muestreo,texto,,S01–S50,,,sitio,diseño
+id_transecto,Transecto,1. Identificación y diseño,Identificador del transecto de 3 km de ribera asociado al sitio,texto,,T01–T50,,,sitio,diseño
+id_visita,ID visita,1. Identificación y diseño,Identificador de la visita (sitio-visita),texto,,S01-V1 … S50-V4,,,visita,diseño
+n_visita,Visita N°,1. Identificación y diseño,Número de visita dentro de la temporada,entero,,"1, 2, 3, 4",1,4,visita,diseño
+id_camara,Cámara,1. Identificación y diseño,Identificador de la cámara trampa del sitio (solo filas con método camara_trampa),texto,,CT-01–CT-50,,,registro,diseño
+utm_este,Este (m),1. Identificación y diseño,"Coordenada Este de la cámara trampa / centro del sitio, en la ribera",numérico,m,WGS84 / UTM 19S (EPSG:32719),150000,330000,sitio,diseño (ubicación aleatoria sobre riberas de la red DGA)
+utm_norte,Norte (m),1. Identificación y diseño,"Coordenada Norte de la cámara trampa / centro del sitio, en la ribera",numérico,m,WGS84 / UTM 19S (EPSG:32719),5590000,5720000,sitio,diseño (ubicación aleatoria sobre riberas de la red DGA)
+utm_este_ini_transecto,Este inicio transecto,1. Identificación y diseño,Coordenada Este del extremo inicial del transecto (sobre el eje del cauce),numérico,m,EPSG:32719,150000,330000,sitio,diseño
+utm_norte_ini_transecto,Norte inicio transecto,1. Identificación y diseño,Coordenada Norte del extremo inicial del transecto,numérico,m,EPSG:32719,5590000,5720000,sitio,diseño
+utm_este_fin_transecto,Este fin transecto,1. Identificación y diseño,Coordenada Este del extremo final del transecto,numérico,m,EPSG:32719,150000,330000,sitio,diseño
+utm_norte_fin_transecto,Norte fin transecto,1. Identificación y diseño,Coordenada Norte del extremo final del transecto,numérico,m,EPSG:32719,5590000,5720000,sitio,diseño
+rio,Río,1. Identificación y diseño,Nombre del cauce donde se ubica el sitio (según red hídrica DGA),texto,,,,,sitio,SIG (red hídrica DGA)
+cod_cuenca,Cód. cuenca,1. Identificación y diseño,Código DGA de la cuenca,texto,,094,,,sitio,SIG (subsubcuencas DGA)
+nom_cuenca,Cuenca,1. Identificación y diseño,Nombre de la cuenca,texto,,Río Toltén,,,sitio,SIG (subsubcuencas DGA)
+cod_subcuenca,Cód. subcuenca,1. Identificación y diseño,Código DGA de la subcuenca,texto,,,,,sitio,SIG (subsubcuencas DGA)
+cod_subsubcuenca,Cód. subsubcuenca,1. Identificación y diseño,Código DGA de la subsubcuenca,texto,,,,,sitio,SIG (subsubcuencas DGA)
+nom_subsubcuenca,Subsubcuenca,1. Identificación y diseño,Nombre DGA de la subsubcuenca,texto,,,,,sitio,SIG (subsubcuencas DGA)
+comuna,Comuna,1. Identificación y diseño,Comuna donde se ubica el sitio,categórica,,Villarrica | Pucón | Curarrehue,,,sitio,SIG (límites comunales)
+fecha,Fecha,1. Identificación y diseño,Fecha de la visita (en filas de cámara: fecha de revisión de la cámara),fecha,AAAA-MM-DD,,2026-11-01,2027-03-31,visita,terreno (simulado)
+hora,Hora inicio,1. Identificación y diseño,Hora de inicio de la visita,hora,HH:MM,,06:00,20:00,visita,terreno (simulado)
+observador,Observador,1. Identificación y diseño,Código del observador responsable de la visita,categórica,,obs_A | obs_B | obs_C,,,visita,terreno (simulado)
+metodo,Método,1. Identificación y diseño,Método de detección del registro,categórica,,huellas | fecas | camara_trampa | avistamiento,,,registro,diseño
+fecha_inicio_camara,Inicio periodo cámara,1. Identificación y diseño,"Fecha de inicio del periodo de funcionamiento de la cámara que se revisa en esta visita (solo cámara, visitas 2–4)",fecha,AAAA-MM-DD,,2026-11-01,2027-03-31,registro,terreno (simulado)
+deteccion,Detección visón,2. Variable respuesta,Detección de visón (Neogale vison) con el método y visita del registro; NA en instalación de cámara o falla total,binaria,,0 | 1,0,1,registro,terreno (simulado)
+tipo_evidencia,Tipo evidencia,2. Variable respuesta,Tipo de evidencia registrada cuando hubo detección,categórica,,huella | fecas | foto | observacion_directa,,,registro,terreno (simulado)
+confiabilidad,Confiabilidad,2. Variable respuesta,Confiabilidad de la identificación de la evidencia (baja: posible confusión con otra especie),categórica ordinal,,baja | media | alta,,,registro,terreno (simulado)
+n_evidencias,N° evidencias,2. Variable respuesta,"Número de evidencias independientes (huellas, fecas, eventos fotográficos, avistamientos)",entero,,,0,200,registro,terreno (simulado)
+longitud_tramo_m,Largo tramo (m),2. Variable respuesta,Longitud de ribera efectivamente recorrida (métodos de transecto),numérico,m,,0,3000,registro,terreno (simulado); nominal 3000 m
+horas_busqueda,Horas búsqueda,2. Variable respuesta,Horas de búsqueda en el transecto (métodos de transecto),numérico,h,,0,10,registro,terreno (simulado)
+dias_camara,Días-cámara,2. Variable respuesta,Días efectivos de funcionamiento de la cámara en el periodo (solo cámara),entero,días,,0,45,registro,terreno (simulado)
+estado_camara,Estado cámara,2. Variable respuesta,Estado de la cámara en la revisión (solo cámara),categórica,,instalacion | operativa | falla_parcial | falla_total,,,registro,terreno (simulado)
+motivo_falla_camara,Motivo falla,2. Variable respuesta,"Motivo de la falla de la cámara, si la hubo",texto,,,,,registro,terreno (simulado)
+dist_euc_piscicultura_m,Dist. euc. piscicultura (m),3. Distancia a centros productivos,Distancia euclidiana (línea recta) a la piscicultura más cercana,numérico,m,,0,100000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dist_euc_avicola_m,Dist. euc. avícola (m),3. Distancia a centros productivos,Distancia euclidiana a la granja avícola más cercana,numérico,m,,0,100000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dist_euc_ganaderia_m,Dist. euc. ganadería (m),3. Distancia a centros productivos,Distancia euclidiana al predio ganadero más cercano,numérico,m,,0,100000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dist_euc_centro_m,Dist. euc. centro (m),3. Distancia a centros productivos,Distancia euclidiana al centro productivo más cercano de cualquier tipo,numérico,m,,0,100000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dist_rio_piscicultura_m,Dist. río piscicultura (m),3. Distancia a centros productivos,Distancia a lo largo de la red hídrica hasta el punto del cauce más cercano a la piscicultura más cercana,numérico,m,,0,300000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dist_rio_avicola_m,Dist. río avícola (m),3. Distancia a centros productivos,Distancia a lo largo de la red hídrica hasta el punto del cauce más cercano a la granja avícola más cercana (no incluye el tramo terrestre),numérico,m,,0,300000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dist_rio_ganaderia_m,Dist. río ganadería (m),3. Distancia a centros productivos,Distancia a lo largo de la red hídrica hasta el punto del cauce más cercano al predio ganadero más cercano (no incluye el tramo terrestre),numérico,m,,0,300000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dist_rio_centro_m,Dist. río centro (m),3. Distancia a centros productivos,Distancia a lo largo de la red hídrica al centro productivo más cercano de cualquier tipo,numérico,m,,0,300000,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+tipo_centro_cercano,Tipo centro más cercano,3. Distancia a centros productivos,Tipo del centro productivo más cercano (euclidiana),categórica,,piscicultura | avicola | ganaderia,,,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+id_centro_cercano,ID centro más cercano,3. Distancia a centros productivos,Identificador del centro productivo más cercano (euclidiana); ver data/raw/centros_productivos.csv,texto,,,,,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+n_centros_500m,N° centros 500 m,3. Distancia a centros productivos,Número de centros productivos (cualquier tipo) a ≤ 500 m,entero,,,0,100,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+n_centros_1km,N° centros 1 km,3. Distancia a centros productivos,Número de centros productivos (cualquier tipo) a ≤ 1 km,entero,,,0,100,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+n_centros_3km,N° centros 3 km,3. Distancia a centros productivos,Número de centros productivos (cualquier tipo) a ≤ 3 km,entero,,,0,100,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+dens_centros_3km_km2,Densidad centros 3 km,3. Distancia a centros productivos,"Densidad de centros productivos en el buffer de 3 km (n / 28,27 km²)",numérico,centros/km²,,0,10,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+n_pisciculturas_3km,N° pisciculturas 3 km,3. Distancia a centros productivos,Número de pisciculturas a ≤ 3 km,entero,,,0,50,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+n_avicolas_3km,N° avícolas 3 km,3. Distancia a centros productivos,Número de granjas avícolas a ≤ 3 km,entero,,,0,50,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+n_ganaderias_3km,N° ganaderías 3 km,3. Distancia a centros productivos,Número de predios ganaderos a ≤ 3 km,entero,,,0,50,sitio,SIG: calculado sobre red hídrica DGA y centros productivos simulados
+prod_piscicultura_cercana_ton,Producción piscicultura cercana (t/año),3. Distancia a centros productivos,Producción anual de la piscicultura más cercana (euclidiana),numérico,t/año,,0,5000,sitio,simulado (registro Sernapesca no disponible)
+cabezas_ganaderia_cercana,Cabezas ganadería cercana,3. Distancia a centros productivos,Número de cabezas del predio ganadero más cercano (euclidiana),entero,cabezas,,0,10000,sitio,simulado
+aves_avicola_cercana,Aves avícola cercana,3. Distancia a centros productivos,Número de aves de la granja avícola más cercana (euclidiana),entero,aves,,0,200000,sitio,simulado
+cob_veg_riberena_pct,Cob. veg. ribereña (%),4. Sitio y ribera,Cobertura de vegetación ribereña en la franja de ribera del transecto,numérico,%,,0,100,sitio,terreno (simulado)
+ancho_franja_riberena_m,Ancho franja ribereña (m),4. Sitio y ribera,Ancho medio de la franja de vegetación ribereña,numérico,m,,0,300,sitio,terreno (simulado)
+densidad_veg,Densidad vegetación,4. Sitio y ribera,Densidad de la vegetación ribereña (categoría visual),categórica ordinal,,baja | media | alta,,,sitio,terreno (simulado)
+cob_dosel_pct,Cob. dosel (%),4. Sitio y ribera,Cobertura de dosel sobre la ribera (densiómetro),numérico,%,,0,100,sitio,terreno (simulado)
+tipo_ribera,Tipo ribera,4. Sitio y ribera,Grado de intervención de la ribera,categórica,,natural | intervenida | artificial,,,sitio,terreno (simulado)
+sustrato_ribera,Sustrato ribera,4. Sitio y ribera,Sustrato dominante de la ribera,categórica,,limo | arena | grava | bolones | roca,,,sitio,terreno (simulado)
+pendiente_ribera_grados,Pendiente ribera (°),4. Sitio y ribera,Pendiente media de la ribera,numérico,grados,,0,90,sitio,terreno (simulado)
+refugio_troncos,Troncos,4. Sitio y ribera,Presencia de troncos o acumulaciones de madera como refugio,binaria,,0 | 1,0,1,sitio,terreno (simulado)
+refugio_rocas,Rocas,4. Sitio y ribera,Presencia de rocas o bolones con cavidades como refugio,binaria,,0 | 1,0,1,sitio,terreno (simulado)
+refugio_madrigueras,Madrigueras,4. Sitio y ribera,Presencia de madrigueras o cavidades en raíces,binaria,,0 | 1,0,1,sitio,terreno (simulado)
+orden_strahler,Orden Strahler,4. Sitio y ribera,Orden de Strahler del cauce,entero,,,1,8,sitio,SIG (red hídrica DGA) o asignado por nombre de cauce
+ancho_cauce_m,Ancho cauce (m),4. Sitio y ribera,Ancho mojado medio del cauce,numérico,m,,0,300,sitio,terreno (simulado)
+caudal_m3s,Caudal (m³/s),4. Sitio y ribera,Caudal estimado durante la visita,numérico,m³/s,,0,2000,visita,simulado (reemplazar por dato real)
+permanencia_agua,Permanencia agua,4. Sitio y ribera,Régimen de permanencia del agua,categórica,,permanente | intermitente,,,sitio,terreno (simulado)
+pct_bosque_nativo_1km,% bosque nativo 1 km,5. Paisaje (buffer 1 km),Porcentaje de bosque nativo en un buffer de 1 km,numérico,%,,0,100,sitio,simulado (reemplazar por dato real)
+pct_plantacion_1km,% plantación 1 km,5. Paisaje (buffer 1 km),Porcentaje de plantaciones forestales en un buffer de 1 km,numérico,%,,0,100,sitio,simulado (reemplazar por dato real)
+pct_agricola_1km,% agrícola 1 km,5. Paisaje (buffer 1 km),Porcentaje de uso agrícola y praderas en un buffer de 1 km,numérico,%,,0,100,sitio,simulado (reemplazar por dato real)
+pct_urbano_1km,% urbano 1 km,5. Paisaje (buffer 1 km),Porcentaje de uso urbano / construido en un buffer de 1 km,numérico,%,,0,100,sitio,simulado (reemplazar por dato real)
+pct_otros_1km,% otros 1 km,5. Paisaje (buffer 1 km),"Porcentaje de otras coberturas (matorral, agua, suelo desnudo) en un buffer de 1 km",numérico,%,,0,100,sitio,simulado (reemplazar por dato real)
+dist_poblado_m,Dist. poblado (m),5. Paisaje (buffer 1 km),Distancia euclidiana al poblado de referencia más cercano,numérico,m,,0,100000,sitio,SIG (coordenadas aproximadas de poblados)
+poblado_cercano,Poblado más cercano,5. Paisaje (buffer 1 km),Nombre del poblado de referencia más cercano,categórica,,Villarrica | Pucón | Curarrehue | Caburgua,,,sitio,SIG (coordenadas aproximadas de poblados)
+dist_camino_m,Dist. camino (m),5. Paisaje (buffer 1 km),Distancia al camino más cercano,numérico,m,,0,20000,sitio,simulado (reemplazar por dato real)
+dens_caminos_1km,Densidad caminos 1 km,5. Paisaje (buffer 1 km),Densidad de caminos en un buffer de 1 km,numérico,km/km²,,0,20,sitio,simulado (reemplazar por dato real)
+altitud_msnm,Altitud (msnm),5. Paisaje (buffer 1 km),Altitud del sitio,numérico,m s.n.m.,,0,2000,sitio,simulado (gradiente aproximado; reemplazar por DEM)
+conectividad_riberena,Conectividad ribereña,5. Paisaje (buffer 1 km),Proporción de ribera con vegetación continua 2 km aguas arriba y abajo (0–1),numérico,proporción,,0,1,sitio,simulado (reemplazar por dato real)
+lluvia_48h_mm,Lluvia 48 h (mm),6. Covariables de detección,Precipitación acumulada en las 48 h previas a la visita,numérico,mm,,0,300,visita,simulado (reemplazar por dato real)
+dias_desde_lluvia,Días desde lluvia,6. Covariables de detección,Días desde la última lluvia ≥ 1 mm,entero,días,,0,60,visita,simulado (reemplazar por dato real)
+temperatura_c,Temperatura (°C),6. Covariables de detección,Temperatura del aire al inicio de la visita,numérico,°C,,-5,40,visita,terreno (simulado)
+nivel_rio,Nivel río,6. Covariables de detección,Nivel del río respecto de su nivel típico en la temporada,categórica ordinal,,bajo | medio | alto,,,visita,terreno (simulado)
+sustrato_busqueda,Sustrato búsqueda,6. Covariables de detección,Sustrato predominante donde se buscaron huellas y fecas (solo métodos huellas y fecas),categórica,,limo | arena | grava | bolones | roca,,,registro,terreno (simulado)
+experiencia_obs_anios,Experiencia observador (años),6. Covariables de detección,Años de experiencia del observador en rastreo de mamíferos,numérico,años,,0,40,visita,terreno (simulado)
+presencia_nutria,Nutria,7. Otras especies y contexto,Registro de nutria / huillín (Lontra provocax) con el método y visita del registro,binaria,,0 | 1,0,1,registro,terreno (simulado)
+presencia_zorro,Zorro,7. Otras especies y contexto,Registro de zorro (Lycalopex spp.) con el método y visita del registro,binaria,,0 | 1,0,1,registro,terreno (simulado)
+presencia_perro,Perro doméstico,7. Otras especies y contexto,Registro de perros domésticos en la ribera,binaria,,0 | 1,0,1,registro,terreno (simulado)
+presencia_ganado_ribera,Ganado en ribera,7. Otras especies y contexto,Registro de ganado (o sus signos) en la ribera,binaria,,0 | 1,0,1,registro,terreno (simulado)
