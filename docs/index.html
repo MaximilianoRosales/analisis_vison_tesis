@@ -144,7 +144,12 @@ div.csl-indent {
   <li><a href="#datos-simulados-1" id="toc-datos-simulados-1" class="nav-link" data-scroll-target="#datos-simulados-1">Datos simulados</a></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
   </ul></li>
-  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos">Datos</a>
+  <ul class="collapse">
+  <li><a href="#contenido-de-la-base" id="toc-contenido-de-la-base" class="nav-link" data-scroll-target="#contenido-de-la-base">Contenido de la base</a></li>
+  <li><a href="#limpieza-de-datos" id="toc-limpieza-de-datos" class="nav-link" data-scroll-target="#limpieza-de-datos">Limpieza de datos</a></li>
+  <li><a href="#diccionario-de-datos" id="toc-diccionario-de-datos" class="nav-link" data-scroll-target="#diccionario-de-datos">Diccionario de datos</a></li>
+  </ul></li>
   <li><a href="#resultados-ilustrativos" id="toc-resultados-ilustrativos" class="nav-link" data-scroll-target="#resultados-ilustrativos">Resultados (ilustrativos)</a>
   <ul class="collapse">
   <li><a href="#exploración-de-los-datos" id="toc-exploración-de-los-datos" class="nav-link" data-scroll-target="#exploración-de-los-datos">Exploración de los datos</a></li>
@@ -205,7 +210,7 @@ div.csl-indent {
 </div>
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
-<p>Diversos estudios sobre especies invasoras en la Patagonia han identificado que diferentes centros productivos agrícolas y pecuarios brindan recursos clave que favorecen la presencia del visón americano (<em>Neovison vison)</em> en los ríos próximos a estos centros (<span class="citation" data-cites="failla2019 lópez2023">(<a href="#ref-failla2019" role="doc-biblioref">Failla y Fasola 2019</a>; <a href="#ref-lópez2023" role="doc-biblioref">López et&nbsp;al. 2023</a>)</span>), planteando serios problemas para la conservación de fauna, generando, además, pérdidas económicas para productores rurales (<span class="citation" data-cites="lópez2023">(<a href="#ref-lópez2023" role="doc-biblioref">López et&nbsp;al. 2023</a>)</span>). Estudiar cómo las características del paisaje, y, en este caso, la distancia a centros productivos, condicionan la presencia o ausencia del visón es fundamental para identificar zonas de alto riesgo y para diseñar estrategias de control eficientes que prevengan su expansión a otras cuencas hidrográficas.&nbsp;</p>
+<p>Diversos estudios sobre especies invasoras en la Patagonia han identificado que diferentes centros productivos agrícolas y pecuarios brindan recursos clave que favorecen la presencia del visón americano (<em>Neovison vison)</em> en los ríos próximos a estos centros (<span class="citation" data-cites="failla2019">Failla y Fasola (<a href="#ref-failla2019" role="doc-biblioref">2019</a>)</span>; <span class="citation" data-cites="lópez2023">López et&nbsp;al. (<a href="#ref-lópez2023" role="doc-biblioref">2023</a>)</span>), planteando serios problemas para la conservación de fauna, generando, además, pérdidas económicas para productores rurales (<span class="citation" data-cites="lópez2023">López et&nbsp;al. (<a href="#ref-lópez2023" role="doc-biblioref">2023</a>)</span>). Estudiar cómo las características del paisaje, y, en este caso, la distancia a centros productivos, condicionan la presencia o ausencia del visón es fundamental para identificar zonas de alto riesgo y para diseñar estrategias de control eficientes que prevengan su expansión a otras cuencas hidrográficas.&nbsp;</p>
 <section id="preguntas-de-investigación" class="level2">
 <h2 class="anchored" data-anchor-id="preguntas-de-investigación">Preguntas de investigación</h2>
 <ol type="1">
@@ -263,7 +268,909 @@ Figura&nbsp;1: Área de estudio: red hídrica, sitios de muestreo y centros prod
 <li>Simulación del muestreo (<code>02_simular_muestreo.R</code>)</li>
 <li>Limpieza de datos (<code>03_limpiar_datos.R</code>)</li>
 </ol>
-<!-- TODO: tabla resumen de la limpieza (data/clean/registro_limpieza.csv) y enlace al diccionario de datos. -->
+<section id="contenido-de-la-base" class="level2">
+<h2 class="anchored" data-anchor-id="contenido-de-la-base">Contenido de la base</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Tamaño de la base de datos simulada.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Indicador</th>
+<th style="text-align: right;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sitios de muestreo</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Visitas</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Registros (sitio × visita × método)</td>
+<td style="text-align: right;">800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Registros con detección válida</td>
+<td style="text-align: right;">744</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Detecciones de visón</td>
+<td style="text-align: right;">144</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Registros y detecciones por método (datos simulados).</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: right;">Registros</th>
+<th style="text-align: right;">Registros válidos</th>
+<th style="text-align: right;">Detecciones</th>
+<th style="text-align: right;">% detección</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">huellas</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">26.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">camara_trampa</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">28.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fecas</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">20.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">avistamiento</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">5.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="limpieza-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="limpieza-de-datos">Limpieza de datos</h2>
+<p>El script <code>03_limpiar_datos.R</code> estandariza categorías, convierte números y fechas, corrige inconsistencias entre filas de un mismo sitio o visita, y valida rangos. Cada corrección queda registrada.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Correcciones aplicadas a la planilla cruda.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Paso de limpieza</th>
+<th style="text-align: right;">Correcciones</th>
+<th style="text-align: right;">Variables afectadas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2. espacios</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. faltantes</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. duplicados</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. categorías</td>
+<td style="text-align: right;">2731</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5. fechas</td>
+<td style="text-align: right;">745</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5. horas</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5. números</td>
+<td style="text-align: right;">10899</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6. consistencia sitio</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6. consistencia visita</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7. rangos</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="diccionario-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="diccionario-de-datos">Diccionario de datos</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Ver el diccionario completo
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 14%">
+<col style="width: 57%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Categoría</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Unidad</th>
+<th style="text-align: left;">Nivel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">id_registro</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Identificador único de la fila (sitio × visita × método)</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">id_sitio</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Identificador del sitio de muestreo</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">id_transecto</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Identificador del transecto de 3 km de ribera asociado al sitio</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">id_visita</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Identificador de la visita (sitio-visita)</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n_visita</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Número de visita dentro de la temporada</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">id_camara</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Identificador de la cámara trampa del sitio (solo filas con método camara_trampa)</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">utm_este</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Coordenada Este de la cámara trampa / centro del sitio, en la ribera</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">utm_norte</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Coordenada Norte de la cámara trampa / centro del sitio, en la ribera</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">utm_este_ini_transecto</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Coordenada Este del extremo inicial del transecto (sobre el eje del cauce)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">utm_norte_ini_transecto</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Coordenada Norte del extremo inicial del transecto</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">utm_este_fin_transecto</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Coordenada Este del extremo final del transecto</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">utm_norte_fin_transecto</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Coordenada Norte del extremo final del transecto</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rio</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Nombre del cauce donde se ubica el sitio (según red hídrica DGA)</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cod_cuenca</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Código DGA de la cuenca</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nom_cuenca</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Nombre de la cuenca</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cod_subcuenca</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Código DGA de la subcuenca</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cod_subsubcuenca</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Código DGA de la subsubcuenca</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nom_subsubcuenca</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Nombre DGA de la subsubcuenca</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comuna</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Comuna donde se ubica el sitio</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fecha</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Fecha de la visita (en filas de cámara: fecha de revisión de la cámara)</td>
+<td style="text-align: left;">fecha</td>
+<td style="text-align: left;">AAAA-MM-DD</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hora</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Hora de inicio de la visita</td>
+<td style="text-align: left;">hora</td>
+<td style="text-align: left;">HH:MM</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">observador</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Código del observador responsable de la visita</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metodo</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Método de detección del registro</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fecha_inicio_camara</td>
+<td style="text-align: left;">1. Identificación y diseño</td>
+<td style="text-align: left;">Fecha de inicio del periodo de funcionamiento de la cámara que se revisa en esta visita (solo cámara, visitas 2–4)</td>
+<td style="text-align: left;">fecha</td>
+<td style="text-align: left;">AAAA-MM-DD</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">deteccion</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Detección de visón (Neogale vison) con el método y visita del registro; NA en instalación de cámara o falla total</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tipo_evidencia</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Tipo de evidencia registrada cuando hubo detección</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">confiabilidad</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Confiabilidad de la identificación de la evidencia (baja: posible confusión con otra especie)</td>
+<td style="text-align: left;">categórica ordinal</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">n_evidencias</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Número de evidencias independientes (huellas, fecas, eventos fotográficos, avistamientos)</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">longitud_tramo_m</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Longitud de ribera efectivamente recorrida (métodos de transecto)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">horas_busqueda</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Horas de búsqueda en el transecto (métodos de transecto)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">h</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dias_camara</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Días efectivos de funcionamiento de la cámara en el periodo (solo cámara)</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">días</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">estado_camara</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Estado de la cámara en la revisión (solo cámara)</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">motivo_falla_camara</td>
+<td style="text-align: left;">2. Variable respuesta</td>
+<td style="text-align: left;">Motivo de la falla de la cámara, si la hubo</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dist_euc_piscicultura_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia euclidiana (línea recta) a la piscicultura más cercana</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dist_euc_avicola_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia euclidiana a la granja avícola más cercana</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dist_euc_ganaderia_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia euclidiana al predio ganadero más cercano</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dist_euc_centro_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia euclidiana al centro productivo más cercano de cualquier tipo</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dist_rio_piscicultura_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia a lo largo de la red hídrica hasta el punto del cauce más cercano a la piscicultura más cercana</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dist_rio_avicola_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia a lo largo de la red hídrica hasta el punto del cauce más cercano a la granja avícola más cercana (no incluye el tramo terrestre)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dist_rio_ganaderia_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia a lo largo de la red hídrica hasta el punto del cauce más cercano al predio ganadero más cercano (no incluye el tramo terrestre)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dist_rio_centro_m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Distancia a lo largo de la red hídrica al centro productivo más cercano de cualquier tipo</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tipo_centro_cercano</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Tipo del centro productivo más cercano (euclidiana)</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">id_centro_cercano</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Identificador del centro productivo más cercano (euclidiana); ver data/raw/centros_productivos.csv</td>
+<td style="text-align: left;">texto</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">n_centros_500m</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de centros productivos (cualquier tipo) a ≤ 500 m</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n_centros_1km</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de centros productivos (cualquier tipo) a ≤ 1 km</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">n_centros_3km</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de centros productivos (cualquier tipo) a ≤ 3 km</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dens_centros_3km_km2</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Densidad de centros productivos en el buffer de 3 km (n / 28,27 km²)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">centros/km²</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">n_pisciculturas_3km</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de pisciculturas a ≤ 3 km</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">n_avicolas_3km</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de granjas avícolas a ≤ 3 km</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">n_ganaderias_3km</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de predios ganaderos a ≤ 3 km</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">prod_piscicultura_cercana_ton</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Producción anual de la piscicultura más cercana (euclidiana)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">t/año</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cabezas_ganaderia_cercana</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de cabezas del predio ganadero más cercano (euclidiana)</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">cabezas</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aves_avicola_cercana</td>
+<td style="text-align: left;">3. Distancia a centros productivos</td>
+<td style="text-align: left;">Número de aves de la granja avícola más cercana (euclidiana)</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">aves</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cob_veg_riberena_pct</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Cobertura de vegetación ribereña en la franja de ribera del transecto</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ancho_franja_riberena_m</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Ancho medio de la franja de vegetación ribereña</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">densidad_veg</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Densidad de la vegetación ribereña (categoría visual)</td>
+<td style="text-align: left;">categórica ordinal</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cob_dosel_pct</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Cobertura de dosel sobre la ribera (densiómetro)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tipo_ribera</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Grado de intervención de la ribera</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sustrato_ribera</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Sustrato dominante de la ribera</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pendiente_ribera_grados</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Pendiente media de la ribera</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">grados</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">refugio_troncos</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Presencia de troncos o acumulaciones de madera como refugio</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">refugio_rocas</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Presencia de rocas o bolones con cavidades como refugio</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">refugio_madrigueras</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Presencia de madrigueras o cavidades en raíces</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">orden_strahler</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Orden de Strahler del cauce</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ancho_cauce_m</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Ancho mojado medio del cauce</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">caudal_m3s</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Caudal estimado durante la visita</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m³/s</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">permanencia_agua</td>
+<td style="text-align: left;">4. Sitio y ribera</td>
+<td style="text-align: left;">Régimen de permanencia del agua</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pct_bosque_nativo_1km</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Porcentaje de bosque nativo en un buffer de 1 km</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pct_plantacion_1km</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Porcentaje de plantaciones forestales en un buffer de 1 km</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pct_agricola_1km</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Porcentaje de uso agrícola y praderas en un buffer de 1 km</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pct_urbano_1km</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Porcentaje de uso urbano / construido en un buffer de 1 km</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pct_otros_1km</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Porcentaje de otras coberturas (matorral, agua, suelo desnudo) en un buffer de 1 km</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">%</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dist_poblado_m</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Distancia euclidiana al poblado de referencia más cercano</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">poblado_cercano</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Nombre del poblado de referencia más cercano</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dist_camino_m</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Distancia al camino más cercano</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dens_caminos_1km</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Densidad de caminos en un buffer de 1 km</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">km/km²</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">altitud_msnm</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Altitud del sitio</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">m s.n.m.</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">conectividad_riberena</td>
+<td style="text-align: left;">5. Paisaje (buffer 1 km)</td>
+<td style="text-align: left;">Proporción de ribera con vegetación continua 2 km aguas arriba y abajo (0–1)</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">proporción</td>
+<td style="text-align: left;">sitio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lluvia_48h_mm</td>
+<td style="text-align: left;">6. Covariables de detección</td>
+<td style="text-align: left;">Precipitación acumulada en las 48 h previas a la visita</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">mm</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dias_desde_lluvia</td>
+<td style="text-align: left;">6. Covariables de detección</td>
+<td style="text-align: left;">Días desde la última lluvia ≥ 1 mm</td>
+<td style="text-align: left;">entero</td>
+<td style="text-align: left;">días</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">temperatura_c</td>
+<td style="text-align: left;">6. Covariables de detección</td>
+<td style="text-align: left;">Temperatura del aire al inicio de la visita</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">°C</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nivel_rio</td>
+<td style="text-align: left;">6. Covariables de detección</td>
+<td style="text-align: left;">Nivel del río respecto de su nivel típico en la temporada</td>
+<td style="text-align: left;">categórica ordinal</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sustrato_busqueda</td>
+<td style="text-align: left;">6. Covariables de detección</td>
+<td style="text-align: left;">Sustrato predominante donde se buscaron huellas y fecas (solo métodos huellas y fecas)</td>
+<td style="text-align: left;">categórica</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">experiencia_obs_anios</td>
+<td style="text-align: left;">6. Covariables de detección</td>
+<td style="text-align: left;">Años de experiencia del observador en rastreo de mamíferos</td>
+<td style="text-align: left;">numérico</td>
+<td style="text-align: left;">años</td>
+<td style="text-align: left;">visita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">presencia_nutria</td>
+<td style="text-align: left;">7. Otras especies y contexto</td>
+<td style="text-align: left;">Registro de nutria / huillín (Lontra provocax) con el método y visita del registro</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">presencia_zorro</td>
+<td style="text-align: left;">7. Otras especies y contexto</td>
+<td style="text-align: left;">Registro de zorro (Lycalopex spp.) con el método y visita del registro</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">presencia_perro</td>
+<td style="text-align: left;">7. Otras especies y contexto</td>
+<td style="text-align: left;">Registro de perros domésticos en la ribera</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">presencia_ganado_ribera</td>
+<td style="text-align: left;">7. Otras especies y contexto</td>
+<td style="text-align: left;">Registro de ganado (o sus signos) en la ribera</td>
+<td style="text-align: left;">binaria</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">registro</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>También está disponible como archivo: <a href="https://github.com/MaximilianoRosales/analisis_vison_tesis/blob/main/documentos/diccionario_datos.csv"><code>documentos/diccionario_datos.csv</code></a>.</p>
+</section>
 </section>
 <section id="resultados-ilustrativos" class="level1">
 <h1>Resultados (ilustrativos)</h1>
@@ -296,7 +1203,6 @@ Nota
 <section id="reproducibilidad" class="level1">
 <h1>Reproducibilidad</h1>
 <p>Todo el código y los datos están en el <a href="https://github.com/MaximilianoRosales/analisis_vison_tesis">repositorio de GitHub</a>. Para regenerar la base de datos simulada, ejecuta <code>scripts/ejecutar_todo.R</code> desde la raíz del proyecto.</p>
-<p><span class="citation" data-cites="failla2019 lópez2023">(<a href="#ref-failla2019" role="doc-biblioref">Failla y Fasola 2019</a>; <a href="#ref-lópez2023" role="doc-biblioref">López et&nbsp;al. 2023</a>)</span></p>
 
 
 
