@@ -1,0 +1,3 @@
+termino,estimador,error_est,p_valor,razon_odds,or_ic_inf,or_ic_sup,n_sitios
+(Intercept),1.491,0.657,0.023,4.441,1.226,16.094,50
+dist_ganaderia_km,-0.404,0.154,0.009,0.668,0.493,0.904,50

@@ -119,11 +119,36 @@ Esta sección usa datos simulados. Sirve para mostrar cómo se presentarán los 
 
 ## Exploración de los datos
 
-<!-- TODO: número de sitios y visitas, detecciones por método. -->
+Las tablas con el tamaño de la base y los registros por método están en la sección *Datos*. La @fig-metodos muestra el porcentaje de registros con detección según el método de muestreo.
+
+![Porcentaje de registros con detección de visón, por método. Datos simulados.](figures/detecciones_metodo.png){#fig-metodos fig-alt="Gráfico de barras con el porcentaje de detección de visón por método: cámara trampa, huellas, fecas y avistamiento"}
+
+<!-- TODO: interpretar la figura cuando la hayas revisado (qué método detecta más, y por qué podría ser en la simulación). -->
 
 ## Presencia de visón y distancia a centros productivos
 
-<!-- TODO: figura principal y, más adelante, modelo. -->
+Para evaluar la hipótesis se usan solo los registros de **cámaras trampa**. Cada sitio se clasifica según haya tenido o no alguna detección de visón, y se compara con la distancia en línea recta al predio ganadero más cercano.
+
+![Detección en cámaras trampa según distancia al predio ganadero más cercano. Cada punto es un sitio. Datos simulados.](figures/deteccion_distancia_ganaderia.png){#fig-distancia fig-alt="Gráfico de puntos con la detección en cámaras trampa (sí o no) frente a la distancia a ganadería en kilómetros, con una curva de regresión logística"}
+
+La @fig-distancia muestra la relación observada. Como exploración, se ajustó una regresión logística simple, con la detección en cámaras como respuesta y la distancia (en km) como predictora.
+
+```{r}
+library(readr)
+library(knitr)
+
+modelo <- read_csv("data/resultados/modelo_ganaderia.csv", show_col_types = FALSE)
+kable(modelo[, c("termino", "estimador", "error_est", "p_valor", "razon_odds", "or_ic_inf", "or_ic_sup")],
+      col.names = c("Término", "Estimador", "Error est.", "p", "Razón de odds", "IC inf.", "IC sup."),
+      caption = "Regresión logística simple (datos simulados). La razón de odds del término de distancia es por cada km adicional.")
+```
+
+::: {.callout-warning}
+## Cómo leer este resultado
+Es un análisis exploratorio con datos simulados. Además, la detección no equivale a presencia: un visón puede estar y no ser detectado. Con visitas repetidas, un modelo de ocupación permitiría separar ambas probabilidades.
+:::
+
+<!-- TODO: interpretar el sentido y la magnitud de la relación cuando hayas revisado la figura y la tabla. -->
 
 # Discusión y próximos pasos
 
