@@ -143,8 +143,9 @@ kable(modelo[, c("termino", "estimador", "error_est", "p_valor", "razon_odds", "
       caption = "Regresión logística simple (datos simulados). La razón de odds del término de distancia es por cada km adicional.")
 ```
 
-::: {.callout-warning}
+::: callout-warning
 ## Cómo leer este resultado
+
 Es un análisis exploratorio con datos simulados. Además, la detección no equivale a presencia: un visón puede estar y no ser detectado. Con visitas repetidas, un modelo de ocupación permitiría separar ambas probabilidades.
 :::
 

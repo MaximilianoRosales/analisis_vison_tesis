@@ -1189,11 +1189,94 @@ Nota
 </div>
 <section id="exploración-de-los-datos" class="level2">
 <h2 class="anchored" data-anchor-id="exploración-de-los-datos">Exploración de los datos</h2>
-<!-- TODO: número de sitios y visitas, detecciones por método. -->
+<p>Las tablas con el tamaño de la base y los registros por método están en la sección <em>Datos</em>. La <a href="#fig-metodos" class="quarto-xref">Figura&nbsp;2</a> muestra el porcentaje de registros con detección según el método de muestreo.</p>
+<div id="fig-metodos" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de barras con el porcentaje de detección de visón por método: cámara trampa, huellas, fecas y avistamiento">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-metodos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/detecciones_metodo.png" class="img-fluid figure-img" alt="Gráfico de barras con el porcentaje de detección de visón por método: cámara trampa, huellas, fecas y avistamiento">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metodos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Porcentaje de registros con detección de visón, por método. Datos simulados.
+</figcaption>
+</figure>
+</div>
+<!-- TODO: interpretar la figura cuando la hayas revisado (qué método detecta más, y por qué podría ser en la simulación). -->
 </section>
 <section id="presencia-de-visón-y-distancia-a-centros-productivos" class="level2">
 <h2 class="anchored" data-anchor-id="presencia-de-visón-y-distancia-a-centros-productivos">Presencia de visón y distancia a centros productivos</h2>
-<!-- TODO: figura principal y, más adelante, modelo. -->
+<p>Para evaluar la hipótesis se usan solo los registros de <strong>cámaras trampa</strong>. Cada sitio se clasifica según haya tenido o no alguna detección de visón, y se compara con la distancia en línea recta al predio ganadero más cercano.</p>
+<div id="fig-distancia" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de puntos con la detección en cámaras trampa (sí o no) frente a la distancia a ganadería en kilómetros, con una curva de regresión logística">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distancia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/deteccion_distancia_ganaderia.png" class="img-fluid figure-img" alt="Gráfico de puntos con la detección en cámaras trampa (sí o no) frente a la distancia a ganadería en kilómetros, con una curva de regresión logística">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distancia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Detección en cámaras trampa según distancia al predio ganadero más cercano. Cada punto es un sitio. Datos simulados.
+</figcaption>
+</figure>
+</div>
+<p>La <a href="#fig-distancia" class="quarto-xref">Figura&nbsp;3</a> muestra la relación observada. Como exploración, se ajustó una regresión logística simple, con la detección en cámaras como respuesta y la distancia (en km) como predictora.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Regresión logística simple (datos simulados). La razón de odds del término de distancia es por cada km adicional.</caption>
+<colgroup>
+<col style="width: 24%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Término</th>
+<th style="text-align: right;">Estimador</th>
+<th style="text-align: right;">Error est.</th>
+<th style="text-align: right;">p</th>
+<th style="text-align: right;">Razón de odds</th>
+<th style="text-align: right;">IC inf.</th>
+<th style="text-align: right;">IC sup.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1.491</td>
+<td style="text-align: right;">0.657</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">4.441</td>
+<td style="text-align: right;">1.226</td>
+<td style="text-align: right;">16.094</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dist_ganaderia_km</td>
+<td style="text-align: right;">-0.404</td>
+<td style="text-align: right;">0.154</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.668</td>
+<td style="text-align: right;">0.493</td>
+<td style="text-align: right;">0.904</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Cómo leer este resultado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es un análisis exploratorio con datos simulados. Además, la detección no equivale a presencia: un visón puede estar y no ser detectado. Con visitas repetidas, un modelo de ocupación permitiría separar ambas probabilidades.</p>
+</div>
+</div>
+<!-- TODO: interpretar el sentido y la magnitud de la relación cuando hayas revisado la figura y la tabla. -->
 </section>
 </section>
 <section id="discusión-y-próximos-pasos" class="level1">

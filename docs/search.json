@@ -67,13 +67,13 @@
     "href": "index.html#exploración-de-los-datos",
     "title": "Visón americano en riberas de La Araucanía",
     "section": "Exploración de los datos",
-    "text": "Exploración de los datos"
+    "text": "Exploración de los datos\nLas tablas con el tamaño de la base y los registros por método están en la sección Datos. La Figura 2 muestra el porcentaje de registros con detección según el método de muestreo.\n\n\n\n\n\n\nFigura 2: Porcentaje de registros con detección de visón, por método. Datos simulados."
   },
   {
     "objectID": "index.html#presencia-de-visón-y-distancia-a-centros-productivos",
     "href": "index.html#presencia-de-visón-y-distancia-a-centros-productivos",
     "title": "Visón americano en riberas de La Araucanía",
     "section": "Presencia de visón y distancia a centros productivos",
-    "text": "Presencia de visón y distancia a centros productivos"
+    "text": "Presencia de visón y distancia a centros productivos\nPara evaluar la hipótesis se usan solo los registros de cámaras trampa. Cada sitio se clasifica según haya tenido o no alguna detección de visón, y se compara con la distancia en línea recta al predio ganadero más cercano.\n\n\n\n\n\n\nFigura 3: Detección en cámaras trampa según distancia al predio ganadero más cercano. Cada punto es un sitio. Datos simulados.\n\n\n\nLa Figura 3 muestra la relación observada. Como exploración, se ajustó una regresión logística simple, con la detección en cámaras como respuesta y la distancia (en km) como predictora.\n\n\n\nRegresión logística simple (datos simulados). La razón de odds del término de distancia es por cada km adicional.\n\n\n\n\n\n\n\n\n\n\n\nTérmino\nEstimador\nError est.\np\nRazón de odds\nIC inf.\nIC sup.\n\n\n\n\n(Intercept)\n1.491\n0.657\n0.023\n4.441\n1.226\n16.094\n\n\ndist_ganaderia_km\n-0.404\n0.154\n0.009\n0.668\n0.493\n0.904\n\n\n\n\n\n\n\n\n\n\n\nAdvertenciaCómo leer este resultado\n\n\n\nEs un análisis exploratorio con datos simulados. Además, la detección no equivale a presencia: un visón puede estar y no ser detectado. Con visitas repetidas, un modelo de ocupación permitiría separar ambas probabilidades."
   }
 ]
