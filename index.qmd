@@ -11,6 +11,7 @@ execute:
   echo: false
   warning: false
   message: false
+bibliography: references.bib
 ---
 
 ::: callout-warning
@@ -21,7 +22,7 @@ Aún no se han recolectado datos de terreno. Todas las tablas, mapas y gráficos
 
 # Introducción
 
-Diversos estudios sobre especies invasoras en la Patagonia han identificado que diferentes centros productivos agrícolas y pecuarios brindan recursos clave que favorecen la presencia del visón americano (*Neovison vison)* en los ríos próximos a estos centros (Failla et al. 2019; Lopez et al. 2023), planteando serios problemas para la conservación de fauna, generando, además, pérdidas económicas para productores rurales (Lopez et al. 2023). Estudiar cómo las características del paisaje, y, en este caso, la distancia a centros productivos, condicionan la presencia o ausencia del visón es fundamental para identificar zonas de alto riesgo y para diseñar estrategias de control eficientes que prevengan su expansión a otras cuencas hidrográficas. 
+Diversos estudios sobre especies invasoras en la Patagonia han identificado que diferentes centros productivos agrícolas y pecuarios brindan recursos clave que favorecen la presencia del visón americano (*Neovison vison)* en los ríos próximos a estos centros ([@failla2019; @lópez2023]), planteando serios problemas para la conservación de fauna, generando, además, pérdidas económicas para productores rurales ([@lópez2023]). Estudiar cómo las características del paisaje, y, en este caso, la distancia a centros productivos, condicionan la presencia o ausencia del visón es fundamental para identificar zonas de alto riesgo y para diseñar estrategias de control eficientes que prevengan su expansión a otras cuencas hidrográficas. 
 
 ## Preguntas de investigación
 
@@ -91,3 +92,5 @@ Esta sección usa datos simulados. Sirve para mostrar cómo se presentarán los 
 # Reproducibilidad
 
 Todo el código y los datos están en el [repositorio de GitHub](https://github.com/MaximilianoRosales/analisis_vison_tesis). Para regenerar la base de datos simulada, ejecuta `scripts/ejecutar_todo.R` desde la raíz del proyecto.
+
+[@failla2019; @lópez2023]
