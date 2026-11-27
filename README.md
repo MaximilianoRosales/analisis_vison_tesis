@@ -4,9 +4,11 @@ Trabajo final del curso **Visualización de datos medioambientales** (profesora:
 
 > ⚠️ **Los datos de este repositorio son simulados con ayuda de Claude (Opus 5.5 - Alto).** Todavía no se recogen datos de terreno de la tesis, así que se generó una base "tipo" con la estructura esperada. **No son resultados ecológicos reales**.
 
-## 1. Contexto
+## 1. Contexto del estudio
 
 Este proyecto se basa en mi tesis de magíster, que estudia la presencia/ausencia de visón americano (*Neovison vison*) en riberas y su relación con la distancia a centros productivos.
+
+![](figures/iconos/neogale_vison.jpg){fig-align="center"}
 
 - **Área de estudio:** desde las proximidades del Lago Villarrica hasta la cordillera.
 - **Comunas:** Villarrica, Pucón y Curarrehue.
@@ -39,6 +41,7 @@ Este proyecto se basa en mi tesis de magíster, que estudia la presencia/ausenci
 └── docs/
     └── diccionario_datos.csv/.  # diccionario de datos y notas
 ```
+
 ## 4. Datos
 
 Cada fila es un sitio de muestreo en una ribera. Variables principales:
@@ -56,6 +59,4 @@ Cada fila es un sitio de muestreo en una ribera. Variables principales:
 
 El diccionario completo irá en `docs/diccionario_datos.csv`.
 
-## 5. Resultados
-
-Las figuras se guardan en `figures/`. *(Agregar aquí 2 o 3 imágenes con una línea de interpretación cada una cuando estén listas.)*
+## 
