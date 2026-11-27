@@ -42,21 +42,18 @@ Este proyecto se basa en mi tesis de magíster, que estudia la presencia/ausenci
     └── diccionario_datos.csv/.  # diccionario de datos y notas
 ```
 
-## 4. Datos
+## 4. Diccionario de los datos
 
-Cada fila es un sitio de muestreo en una ribera. Variables principales:
+## Ver el diccionario completo
 
-| Variable | Descripción |
-|------------------------------------|------------------------------------|
-| `id_sitio` | Identificador único del sitio |
-| `rio` | Río donde está el sitio |
-| `comuna` | Comuna |
-| `este_utm`, `norte_utm` | Coordenadas UTM 19S (m) |
-| `distancia_centro_productivo_m` | Distancia al centro productivo más cercano (m) |
-| `metodo` | Método de detección |
-| `fecha` | Fecha del registro |
-| `presencia` | 1 = presencia de visón, 0 = ausencia |
+```{r}
+dicc <- read_csv("documentos/diccionario_datos.csv", show_col_types = FALSE)
+kable(dicc[, c("variable", "categoria", "descripcion", "tipo", "unidad", "nivel")],
+      col.names = c("Variable", "Categoría", "Descripción", "Tipo", "Unidad", "Nivel"))
+```
 
-El diccionario completo irá en `docs/diccionario_datos.csv`.
+También está disponible como archivo: [`documentos/diccionario_datos.csv`](https://github.com/MaximilianoRosales/analisis_vison_tesis/blob/main/documentos/diccionario_datos.csv).
+
+# 
 
 ## 
