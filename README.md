@@ -1,6 +1,6 @@
 # ¿Dónde se encuentra el Visón? Proximidad a centros ganaderos productivos como determinante de la presencia o ausencia de Visón Americano
 
-Trabajo final del curso **Visualización de datos medioambientales**, Magíster en Recursos Naturales, Pontificia Universidad Católica de Chile.
+Trabajo final del curso **Visualización de datos medioambientales** (profesora: Sara Acevedo), Magíster en Recursos Naturales, Pontificia Universidad Católica de Chile.
 
 > ⚠️ **Los datos de este repositorio son simulados con ayuda de Claude (Opus 5.5 - Alto).** Todavía no se recogen datos de terreno de la tesis, así que se generó una base "tipo" con la estructura esperada. **No son resultados ecológicos reales**.
 
@@ -14,7 +14,7 @@ Este proyecto se basa en mi tesis de magíster, que estudia la presencia/ausenci
 - **Métodos de detección:** huellas, fecas, cámaras trampa y avistamiento.
 - **Coordenadas:** UTM huso 19S (EPSG:32719).
 
-## 2. Pregunta de visualización
+## 2. Pregunta de investigación
 
 ¿Cómo se distribuyen las detecciones de visón a lo largo de los ríos del área de estudio, y cómo varían con la distancia a centros productivos?
 
